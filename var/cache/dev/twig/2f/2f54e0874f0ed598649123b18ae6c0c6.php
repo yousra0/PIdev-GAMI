@@ -12,7 +12,7 @@ use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
-/* Admin/browse.html.twig */
+/* admin/browse.html.twig */
 class __TwigTemplate_fd930a37230b72777afa01e34f1b2271 extends Template
 {
     private $source;
@@ -39,12 +39,12 @@ class __TwigTemplate_fd930a37230b72777afa01e34f1b2271 extends Template
     {
         $macros = $this->macros;
         $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "Admin/browse.html.twig"));
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "admin/browse.html.twig"));
 
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "Admin/browse.html.twig"));
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "admin/browse.html.twig"));
 
-        $this->parent = $this->loadTemplate("base.html.twig", "Admin/browse.html.twig", 1);
+        $this->parent = $this->loadTemplate("base.html.twig", "admin/browse.html.twig", 1);
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
@@ -462,7 +462,7 @@ class __TwigTemplate_fd930a37230b72777afa01e34f1b2271 extends Template
      */
     public function getTemplateName()
     {
-        return "Admin/browse.html.twig";
+        return "admin/browse.html.twig";
     }
 
     /**
@@ -855,6 +855,6 @@ class __TwigTemplate_fd930a37230b72777afa01e34f1b2271 extends Template
     </div>
   </footer>
 
-{% endblock %}", "Admin/browse.html.twig", "C:\\Users\\lenovo\\Desktop\\PIDEV\\web\\front\\GAMI\\templates\\admin\\browse.html.twig");
+{% endblock %}", "admin/browse.html.twig", "C:\\Users\\lenovo\\Desktop\\PIDEV\\GAMI\\web\\front\\templates\\admin\\browse.html.twig");
     }
 }

@@ -163,6 +163,6 @@ class __TwigTemplate_33b2dde043ee676a15a6f0536cd4b1a6 extends Template
     </ul>
 </div>
 {% endblock %}
-", "index/index.html.twig", "C:\\Users\\lenovo\\Desktop\\PIDEV\\web\\front\\GAMI\\templates\\index\\index.html.twig");
+", "index/index.html.twig", "C:\\Users\\lenovo\\Desktop\\PIDEV\\GAMI\\web\\front\\templates\\index\\index.html.twig");
     }
 }

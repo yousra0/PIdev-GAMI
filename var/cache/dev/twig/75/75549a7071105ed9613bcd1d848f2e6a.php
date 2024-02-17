@@ -901,6 +901,6 @@ $context["used"] === false)) {
     {% endif %}
 {% endblock %}
 
-", "@ApiPlatform/DataCollector/request.html.twig", "C:\\Users\\lenovo\\Desktop\\PIDEV\\web\\front\\GAMI\\vendor\\api-platform\\core\\src\\Symfony\\Bundle\\Resources\\views\\DataCollector\\request.html.twig");
+", "@ApiPlatform/DataCollector/request.html.twig", "C:\\Users\\lenovo\\Desktop\\PIDEV\\GAMI\\web\\front\\vendor\\api-platform\\core\\src\\Symfony\\Bundle\\Resources\\views\\DataCollector\\request.html.twig");
     }
 }

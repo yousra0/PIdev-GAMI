@@ -257,6 +257,6 @@ class __TwigTemplate_0679a7e320a55c4cabca169aca36bb87 extends Template
     <body>
         {% block body %}{% endblock %}
     </body>
-</html>", "base.html.twig", "C:\\Users\\lenovo\\Desktop\\PIDEV\\web\\front\\GAMI\\templates\\base.html.twig");
+</html>", "base.html.twig", "C:\\Users\\lenovo\\Desktop\\PIDEV\\GAMI\\web\\front\\templates\\base.html.twig");
     }
 }

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>List post</title>
+
+    {% block stylesheets %}
+        <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/templatemo-cyborg-gaming.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/owl.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
+
+        <style>
+            /* Your custom CSS styles go here */
+            /* Set background to black with 90% opacity */
+            body {
+                background: rgb(144, 87, 175);
+                background: radial-gradient(circle, rgba(144, 87, 175, 1) 0%, rgba(200, 64, 153, 1) 49%, rgba(40, 17, 41, 1) 75%, rgba(0, 0, 0, 1) 100%);
+                color: white; /* Text color */
+                font-family: Arial, sans-serif;
+            }
+
+            /* Main container */
+            .container {
+                max-width: 600px;
+                margin: 50px auto;
+                padding: 10px; /* Reduced padding */
+                border: 2px solid #ccc; /* Grey border */
+                border-radius: 10px;
+            }
+
+            /* Header styles */
+            header {
+                text-align: center;
+                padding: 20px 0;
+            }
+
+            /* Post styles */
+            .post {
+                background-color: #333;
+                border-radius: 5px;
+                margin-bottom: 10px;
+                padding: 10px;
+            }
+
+            .post img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+
+            .post-actions {
+                margin-top: 10px;
+            }
+
+            /* Button styles */
+            .button {
+                background-color: #04AA6D; /* Green */
+                border: none;
+                color: white;
+                padding: 6px 12px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 14px;
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 4px;
+            }
+
+            .button5 {
+                background-color: white;
+                color: black;
+                border: 2px solid #555555;
+                border-radius: 12px;
+            }
+
+            .button5:hover {
+                background-color: #555555;
+                color: white;
+            }
+
+            .error-message {
+                color: red;
+                font-size: 14px;
+            }
+        </style>
+    {% endblock %}
+</head>
+<body>
+
+{% block content %}
+<div class="container">
+    <h1>List post</h1>
+
+    {% for post in posts %}
+        <div class="post">
+            <h3>{{ post.titre }}</h3>
+            <p>{{ post.contenuPub }}</p>
+            <p>Date: {{ post.datePub ? post.datePub.format('Y-m-d H:i:s') : '' }}</p>
+            <img src="{{ asset('uploads/' ~ post.file) }}" alt="Image">
+
+            <!-- Ajouter un commentaire -->
+            <form method="post" action="{{ path('add_comment') }}" class="comment-form">
+                <label for="contenuComment">Contenu du commentaire</label>
+                <input type="text" name="contenuComment">
+                <input type="hidden" name="postId" value="{{ post.id }}">
+                <button type="submit">Ajouter un commentaire</button>
+            </form>
+
+            <h3>Commentaires:</h3>
+            <ul class="comments-list">
+                <div id="comments-container-{{ post.id }}"></div>
+                
+                {% for comment in post.comments %}
+                    <li>{{ comment.contenuComment }}</li>
+                    <td><a href="{{ path('deleteComment', {'id': comment.id}) }}">Delete</a></td>
+                    <td><a href="{{ path('editComment', {'id': comment.id}) }}">Edit</a></td>
+                {% endfor %}
+            </ul>
+
+            <div class="post-actions">
+                <button class="likeButton" data-post-id="{{ post.id }}">Like</button>
+                <button class="dislikeButton" data-post-id="{{ post.id }}">Dislike</button>
+                <a href="{{ path('deletePost', {'id': post.id}) }}" class="button button5">Delete</a>
+                <a href="{{ path('editPost', {'id': post.id}) }}" class="button button5">Edit</a>
+                <span>Likes: {{ post.likes }}</span>
+                <span>Dislikes: {{ post.dislikes }}</span>
+            </div>
+        </div>
+    {% endfor %}
+
+    <a href="{{ path('addpost') }}" class="button button5">Add</a>
+</div>
+{% endblock %}
+
+
+{% block javascripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const likeButtons = document.querySelectorAll('.likeButton');
+            const dislikeButtons = document.querySelectorAll('.dislikeButton');
+
+            likeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const postId = button.getAttribute('data-post-id');
+                    fetch(`/post/like/${postId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            // Update the like count
+                        });
+                });
+            });
+
+            dislikeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const postId = button.getAttribute('data-post-id');
+                    fetch(`/post/dislike/${postId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            // Update the dislike count
+                        });
+                });
+            });
+        });
+
+
+
+
+
+
+        //commentaires
+        document.getElementById('load-comments-btn').addEventListener('click', function() {
+        const postId = this.getAttribute('data-post-id');
+        fetch(`/post/${postId}/comments`)
+            .then(response => response.json())
+            .then(data => {
+                const commentsContainer = document.getElementById('comments-container');
+                commentsContainer.innerHTML = '';
+                data.forEach(comment => {
+                    const commentElement = document.createElement('div');
+                    commentElement.textContent = comment.content;
+                    commentsContainer.appendChild(commentElement);
+                });
+            });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const loadButtons = document.querySelectorAll('[id^="load-comments-btn-"]');
+
+    loadButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const postId = button.getAttribute('data-post-id');
+            fetch(`/post/${postId}/comments`)
+                .then(response => response.json())
+                .then(data => {
+                    const commentsContainer = document.getElementById(`comments-container-${postId}`);
+                    commentsContainer.innerHTML = '';
+                    data.forEach(comment => {
+                        const commentElement = document.createElement('div');
+                        commentElement.textContent = comment.content;
+                        commentsContainer.appendChild(commentElement);
+                    });
+                });
+        });
+    });
+});
+
+
+
+    </script>
+{% endblock %}
+
+</body>
+</html>

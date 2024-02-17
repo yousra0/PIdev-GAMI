@@ -12,7 +12,7 @@ use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
-/* Admin/profile.html.twig */
+/* admin/profile.html.twig */
 class __TwigTemplate_712e242ea63fb4e683f42f6f42289aa0 extends Template
 {
     private $source;
@@ -39,12 +39,12 @@ class __TwigTemplate_712e242ea63fb4e683f42f6f42289aa0 extends Template
     {
         $macros = $this->macros;
         $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "Admin/profile.html.twig"));
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "admin/profile.html.twig"));
 
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "Admin/profile.html.twig"));
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "admin/profile.html.twig"));
 
-        $this->parent = $this->loadTemplate("base.html.twig", "Admin/profile.html.twig", 1);
+        $this->parent = $this->loadTemplate("base.html.twig", "admin/profile.html.twig", 1);
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
@@ -86,7 +86,10 @@ class __TwigTemplate_712e242ea63fb4e683f42f6f42289aa0 extends Template
             <div class=\"col-12\">
                 <nav class=\"main-nav\">
                     <!-- ***** Logo Start ***** -->
-                    <a href=\"index.html\" class=\"logo\">
+                    <a href=\"";
+        // line 25
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_index");
+        echo "\" class=\"logo\">
                         <img src=\"assets/images/logo.png\" alt=\"\">
                     </a>
                     <!-- ***** Logo End ***** -->
@@ -302,7 +305,7 @@ class __TwigTemplate_712e242ea63fb4e683f42f6f42289aa0 extends Template
      */
     public function getTemplateName()
     {
-        return "Admin/profile.html.twig";
+        return "admin/profile.html.twig";
     }
 
     /**
@@ -318,7 +321,7 @@ class __TwigTemplate_712e242ea63fb4e683f42f6f42289aa0 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  117 => 42,  113 => 41,  109 => 40,  105 => 39,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  120 => 42,  116 => 41,  112 => 40,  108 => 39,  91 => 25,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -347,7 +350,7 @@ class __TwigTemplate_712e242ea63fb4e683f42f6f42289aa0 extends Template
             <div class=\"col-12\">
                 <nav class=\"main-nav\">
                     <!-- ***** Logo Start ***** -->
-                    <a href=\"index.html\" class=\"logo\">
+                    <a href=\"{{ path('app_index') }}\" class=\"logo\">
                         <img src=\"assets/images/logo.png\" alt=\"\">
                     </a>
                     <!-- ***** Logo End ***** -->
@@ -537,6 +540,6 @@ class __TwigTemplate_712e242ea63fb4e683f42f6f42289aa0 extends Template
     </div>
   </footer>
 
-{% endblock %}", "Admin/profile.html.twig", "C:\\Users\\lenovo\\Desktop\\PIDEV\\web\\front\\GAMI\\templates\\admin\\profile.html.twig");
+{% endblock %}", "admin/profile.html.twig", "C:\\Users\\lenovo\\Desktop\\PIDEV\\GAMI\\web\\front\\templates\\admin\\profile.html.twig");
     }
 }

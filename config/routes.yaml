@@ -2,3 +2,28 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
+
+app_comment:
+    path: '/comment'
+    controller: 'App\Controller\CommentController::index'
+
+add_comment:
+    path: '/comment/add'
+    controller: 'App\Controller\CommentController::addComment'
+
+
+list_comment:
+    path: '/comment/listComment'
+    controller: 'App\Controller\CommentController::listComment'
+
+delete_comment:
+    path: '/comment/deleteComment/{id}'
+    controller: 'App\Controller\CommentController::deleteComment'
+
+edit_comment:
+    path: '/comment/editComment/{id}'
+    controller: 'App\Controller\CommentController::editComment'
+
+get_comments_by_post:
+    path: '/post/{postId}/comments'
+    controller: 'App\Controller\CommentController::getCommentsByPost'
