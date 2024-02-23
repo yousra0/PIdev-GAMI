@@ -94,15 +94,14 @@
 {% endblock %}
 
 
-
-{{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+{{ form_start(form, {'attr': {'enctype': 'multipart/form-data', 'id': 'votre-formulaire-id'}}) }}
 <table>
     <tr>
-        <td>{{ form_label(form.contenuComment, "Contenu du commentaire") }}</td>
+        <td>{{ form_label(form.contenuComment," Contenu de commentaire")}}</td>
         <td>
             {{ form_widget(form.contenuComment) }}
             {# Affiche les erreurs de validation du champ "contenuComment" #}
-            {% if form_errors(form.contenuComment) %}
+            {% if form_errors(form.contenuPub) %}
                 <div class="error-message">
                     {{ form_errors(form.contenuComment) }}
                 </div>

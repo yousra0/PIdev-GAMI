@@ -50,24 +50,28 @@ class __TwigTemplate_01b700810baf418e796623e7b65c6c3a extends Template
     <meta name=\"viewport\" content=\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\">
     <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">
     <title>List post</title>
+        <a href=\"";
+        // line 8
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("addpost");
+        echo "\" class=\"button button5\">Add</a>
 
     ";
-        // line 9
+        // line 10
         $this->displayBlock('stylesheets', $context, $blocks);
-        // line 93
+        // line 117
         echo "</head>
 <body>
 
 ";
-        // line 96
+        // line 120
         $this->displayBlock('content', $context, $blocks);
-        // line 140
+        // line 167
         echo "
 
 ";
-        // line 142
+        // line 169
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 217
+        // line 244
         echo "
 </body>
 </html>
@@ -80,7 +84,7 @@ class __TwigTemplate_01b700810baf418e796623e7b65c6c3a extends Template
 
     }
 
-    // line 9
+    // line 10
     public function block_stylesheets($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -90,24 +94,24 @@ class __TwigTemplate_01b700810baf418e796623e7b65c6c3a extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
 
-        // line 10
+        // line 11
         echo "        <link href=\"";
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("vendor/bootstrap/css/bootstrap.min.css"), "html", null, true);
         echo "\" rel=\"stylesheet\">
         <link rel=\"stylesheet\" href=\"";
-        // line 11
+        // line 12
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/css/fontawesome.css"), "html", null, true);
         echo "\">
         <link rel=\"stylesheet\" href=\"";
-        // line 12
+        // line 13
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/css/templatemo-cyborg-gaming.css"), "html", null, true);
         echo "\">
         <link rel=\"stylesheet\" href=\"";
-        // line 13
+        // line 14
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/css/owl.css"), "html", null, true);
         echo "\">
         <link rel=\"stylesheet\" href=\"";
-        // line 14
+        // line 15
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/css/animate.css"), "html", null, true);
         echo "\">
 
@@ -186,6 +190,29 @@ class __TwigTemplate_01b700810baf418e796623e7b65c6c3a extends Template
                 color: red;
                 font-size: 14px;
             }
+
+            /* Styles for comment edit and delete buttons */
+            .comment-actions a {
+                margin-right: 5px; /* Espacement entre les boutons */
+                padding: 5px 10px; /* Espacement interne */
+                border-radius: 4px; /* Coins arrondis */
+                text-decoration: none; /* Pas de soulignement */
+            }
+
+            .comment-actions a.edit-button {
+                background-color: #007bff; /* Couleur de fond pour le bouton Edit */
+                color: white; /* Couleur du texte */
+            }
+
+            .comment-actions a.delete-button {
+                background-color: #dc3545; /* Couleur de fond pour le bouton Delete */
+                color: white; /* Couleur du texte */
+            }
+
+            .comment-actions a.edit-button:hover,
+            .comment-actions a.delete-button:hover {
+                opacity: 0.8; /* Légère transparence au survol */
+            }
         </style>
     ";
         
@@ -196,7 +223,7 @@ class __TwigTemplate_01b700810baf418e796623e7b65c6c3a extends Template
 
     }
 
-    // line 96
+    // line 120
     public function block_content($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -206,44 +233,48 @@ class __TwigTemplate_01b700810baf418e796623e7b65c6c3a extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "content"));
 
-        // line 97
+        // line 121
         echo "<div class=\"container\">
     <h1>List post</h1>
 
     ";
-        // line 100
+        // line 124
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["posts"]) || array_key_exists("posts", $context) ? $context["posts"] : (function () { throw new RuntimeError('Variable "posts" does not exist.', 100, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["posts"]) || array_key_exists("posts", $context) ? $context["posts"] : (function () { throw new RuntimeError('Variable "posts" does not exist.', 124, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["post"]) {
-            // line 101
+            // line 125
             echo "        <div class=\"post\">
             <h3>";
-            // line 102
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "titre", [], "any", false, false, false, 102), "html", null, true);
+            // line 126
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "titre", [], "any", false, false, false, 126), "html", null, true);
             echo "</h3>
             <p>";
-            // line 103
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "contenuPub", [], "any", false, false, false, 103), "html", null, true);
+            // line 127
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "contenuPub", [], "any", false, false, false, 127), "html", null, true);
             echo "</p>
             <p>Date: ";
-            // line 104
-            ((twig_get_attribute($this->env, $this->source, $context["post"], "datePub", [], "any", false, false, false, 104)) ? (print (twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["post"], "datePub", [], "any", false, false, false, 104), "format", ["Y-m-d H:i:s"], "method", false, false, false, 104), "html", null, true))) : (print ("")));
+            // line 128
+            ((twig_get_attribute($this->env, $this->source, $context["post"], "datePub", [], "any", false, false, false, 128)) ? (print (twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["post"], "datePub", [], "any", false, false, false, 128), "format", ["Y-m-d H:i:s"], "method", false, false, false, 128), "html", null, true))) : (print ("")));
             echo "</p>
             <img src=\"";
-            // line 105
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/" . twig_get_attribute($this->env, $this->source, $context["post"], "file", [], "any", false, false, false, 105))), "html", null, true);
+            // line 129
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/" . twig_get_attribute($this->env, $this->source, $context["post"], "file", [], "any", false, false, false, 129))), "html", null, true);
             echo "\" alt=\"Image\">
 
             <!-- Ajouter un commentaire -->
             <form method=\"post\" action=\"";
-            // line 108
+            // line 132
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("add_comment");
             echo "\" class=\"comment-form\">
                 <label for=\"contenuComment\">Contenu du commentaire</label>
                 <input type=\"text\" name=\"contenuComment\">
+                ";
+            // line 135
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 135, $this->source); })()), "contenuComment", [], "any", false, false, false, 135), 'errors');
+            echo " <!-- Afficher les erreurs de validation -->
                 <input type=\"hidden\" name=\"postId\" value=\"";
-            // line 111
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "id", [], "any", false, false, false, 111), "html", null, true);
+            // line 136
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "id", [], "any", false, false, false, 136), "html", null, true);
             echo "\">
                 <button type=\"submit\">Ajouter un commentaire</button>
             </form>
@@ -251,59 +282,61 @@ class __TwigTemplate_01b700810baf418e796623e7b65c6c3a extends Template
             <h3>Commentaires:</h3>
             <ul class=\"comments-list\">
                 <div id=\"comments-container-";
-            // line 117
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "id", [], "any", false, false, false, 117), "html", null, true);
+            // line 142
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "id", [], "any", false, false, false, 142), "html", null, true);
             echo "\"></div>
                 
                 ";
-            // line 119
+            // line 144
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, $context["post"], "comments", [], "any", false, false, false, 119));
+            $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, $context["post"], "comments", [], "any", false, false, false, 144));
             foreach ($context['_seq'] as $context["_key"] => $context["comment"]) {
-                // line 120
+                // line 145
                 echo "                    <li>";
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["comment"], "contenuComment", [], "any", false, false, false, 120), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["comment"], "contenuComment", [], "any", false, false, false, 145), "html", null, true);
                 echo "</li>
-                    <td><a href=\"";
-                // line 121
-                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("deleteComment", ["id" => twig_get_attribute($this->env, $this->source, $context["comment"], "id", [], "any", false, false, false, 121)]), "html", null, true);
-                echo "\">Delete</a></td>
-                    <td><a href=\"";
-                // line 122
-                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("editComment", ["id" => twig_get_attribute($this->env, $this->source, $context["comment"], "id", [], "any", false, false, false, 122)]), "html", null, true);
-                echo "\">Edit</a></td>
+                    <div class=\"comment-actions\">
+                        <a href=\"";
+                // line 147
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("deleteComment", ["id" => twig_get_attribute($this->env, $this->source, $context["comment"], "id", [], "any", false, false, false, 147)]), "html", null, true);
+                echo "\" class=\"delete-button\">Delete</a>
+                        <a href=\"";
+                // line 148
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("editComment", ["id" => twig_get_attribute($this->env, $this->source, $context["comment"], "id", [], "any", false, false, false, 148)]), "html", null, true);
+                echo "\" class=\"edit-button\">Edit</a>
+                    </div>
                 ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['comment'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 124
+            // line 151
             echo "            </ul>
 
             <div class=\"post-actions\">
                 <button class=\"likeButton\" data-post-id=\"";
-            // line 127
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "id", [], "any", false, false, false, 127), "html", null, true);
+            // line 154
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "id", [], "any", false, false, false, 154), "html", null, true);
             echo "\">Like</button>
                 <button class=\"dislikeButton\" data-post-id=\"";
-            // line 128
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "id", [], "any", false, false, false, 128), "html", null, true);
+            // line 155
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "id", [], "any", false, false, false, 155), "html", null, true);
             echo "\">Dislike</button>
                 <a href=\"";
-            // line 129
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("deletePost", ["id" => twig_get_attribute($this->env, $this->source, $context["post"], "id", [], "any", false, false, false, 129)]), "html", null, true);
+            // line 156
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("deletePost", ["id" => twig_get_attribute($this->env, $this->source, $context["post"], "id", [], "any", false, false, false, 156)]), "html", null, true);
             echo "\" class=\"button button5\">Delete</a>
                 <a href=\"";
-            // line 130
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("editPost", ["id" => twig_get_attribute($this->env, $this->source, $context["post"], "id", [], "any", false, false, false, 130)]), "html", null, true);
+            // line 157
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("editPost", ["id" => twig_get_attribute($this->env, $this->source, $context["post"], "id", [], "any", false, false, false, 157)]), "html", null, true);
             echo "\" class=\"button button5\">Edit</a>
                 <span>Likes: ";
-            // line 131
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "likes", [], "any", false, false, false, 131), "html", null, true);
+            // line 158
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "likes", [], "any", false, false, false, 158), "html", null, true);
             echo "</span>
                 <span>Dislikes: ";
-            // line 132
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "dislikes", [], "any", false, false, false, 132), "html", null, true);
+            // line 159
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "dislikes", [], "any", false, false, false, 159), "html", null, true);
             echo "</span>
             </div>
         </div>
@@ -312,12 +345,9 @@ class __TwigTemplate_01b700810baf418e796623e7b65c6c3a extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['post'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 136
+        // line 163
         echo "
-    <a href=\"";
-        // line 137
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("addpost");
-        echo "\" class=\"button button5\">Add</a>
+
 </div>
 ";
         
@@ -328,7 +358,7 @@ class __TwigTemplate_01b700810baf418e796623e7b65c6c3a extends Template
 
     }
 
-    // line 142
+    // line 169
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -338,7 +368,7 @@ class __TwigTemplate_01b700810baf418e796623e7b65c6c3a extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 143
+        // line 170
         echo "    <script>
         document.addEventListener('DOMContentLoaded', function () {
             const likeButtons = document.querySelectorAll('.likeButton');
@@ -432,9 +462,17 @@ class __TwigTemplate_01b700810baf418e796623e7b65c6c3a extends Template
     /**
      * @codeCoverageIgnore
      */
+    public function isTraitable()
+    {
+        return false;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
     public function getDebugInfo()
     {
-        return array (  342 => 143,  332 => 142,  319 => 137,  316 => 136,  306 => 132,  302 => 131,  298 => 130,  294 => 129,  290 => 128,  286 => 127,  281 => 124,  273 => 122,  269 => 121,  264 => 120,  260 => 119,  255 => 117,  246 => 111,  240 => 108,  234 => 105,  230 => 104,  226 => 103,  222 => 102,  219 => 101,  215 => 100,  210 => 97,  200 => 96,  111 => 14,  107 => 13,  103 => 12,  99 => 11,  94 => 10,  84 => 9,  71 => 217,  69 => 142,  65 => 140,  63 => 96,  58 => 93,  56 => 9,  46 => 1,);
+        return array (  372 => 170,  362 => 169,  349 => 163,  339 => 159,  335 => 158,  331 => 157,  327 => 156,  323 => 155,  319 => 154,  314 => 151,  305 => 148,  301 => 147,  295 => 145,  291 => 144,  286 => 142,  277 => 136,  273 => 135,  267 => 132,  261 => 129,  257 => 128,  253 => 127,  249 => 126,  246 => 125,  242 => 124,  237 => 121,  227 => 120,  115 => 15,  111 => 14,  107 => 13,  103 => 12,  98 => 11,  88 => 10,  75 => 244,  73 => 169,  69 => 167,  67 => 120,  62 => 117,  60 => 10,  55 => 8,  46 => 1,);
     }
 
     public function getSourceContext()
@@ -446,6 +484,7 @@ class __TwigTemplate_01b700810baf418e796623e7b65c6c3a extends Template
     <meta name=\"viewport\" content=\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\">
     <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">
     <title>List post</title>
+        <a href=\"{{ path('addpost') }}\" class=\"button button5\">Add</a>
 
     {% block stylesheets %}
         <link href=\"{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}\" rel=\"stylesheet\">
@@ -529,6 +568,29 @@ class __TwigTemplate_01b700810baf418e796623e7b65c6c3a extends Template
                 color: red;
                 font-size: 14px;
             }
+
+            /* Styles for comment edit and delete buttons */
+            .comment-actions a {
+                margin-right: 5px; /* Espacement entre les boutons */
+                padding: 5px 10px; /* Espacement interne */
+                border-radius: 4px; /* Coins arrondis */
+                text-decoration: none; /* Pas de soulignement */
+            }
+
+            .comment-actions a.edit-button {
+                background-color: #007bff; /* Couleur de fond pour le bouton Edit */
+                color: white; /* Couleur du texte */
+            }
+
+            .comment-actions a.delete-button {
+                background-color: #dc3545; /* Couleur de fond pour le bouton Delete */
+                color: white; /* Couleur du texte */
+            }
+
+            .comment-actions a.edit-button:hover,
+            .comment-actions a.delete-button:hover {
+                opacity: 0.8; /* Légère transparence au survol */
+            }
         </style>
     {% endblock %}
 </head>
@@ -549,6 +611,7 @@ class __TwigTemplate_01b700810baf418e796623e7b65c6c3a extends Template
             <form method=\"post\" action=\"{{ path('add_comment') }}\" class=\"comment-form\">
                 <label for=\"contenuComment\">Contenu du commentaire</label>
                 <input type=\"text\" name=\"contenuComment\">
+                {{ form_errors(form.contenuComment) }} <!-- Afficher les erreurs de validation -->
                 <input type=\"hidden\" name=\"postId\" value=\"{{ post.id }}\">
                 <button type=\"submit\">Ajouter un commentaire</button>
             </form>
@@ -559,8 +622,10 @@ class __TwigTemplate_01b700810baf418e796623e7b65c6c3a extends Template
                 
                 {% for comment in post.comments %}
                     <li>{{ comment.contenuComment }}</li>
-                    <td><a href=\"{{ path('deleteComment', {'id': comment.id}) }}\">Delete</a></td>
-                    <td><a href=\"{{ path('editComment', {'id': comment.id}) }}\">Edit</a></td>
+                    <div class=\"comment-actions\">
+                        <a href=\"{{ path('deleteComment', {'id': comment.id}) }}\" class=\"delete-button\">Delete</a>
+                        <a href=\"{{ path('editComment', {'id': comment.id}) }}\" class=\"edit-button\">Edit</a>
+                    </div>
                 {% endfor %}
             </ul>
 
@@ -575,7 +640,7 @@ class __TwigTemplate_01b700810baf418e796623e7b65c6c3a extends Template
         </div>
     {% endfor %}
 
-    <a href=\"{{ path('addpost') }}\" class=\"button button5\">Add</a>
+
 </div>
 {% endblock %}
 

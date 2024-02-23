@@ -21,13 +21,12 @@ class CommentType extends AbstractType
         $builder
             ->add('contenuComment', null, [
                 'constraints' => [
-                    new Assert\NotBlank(), 
-                    new Assert\Length(['min' => 5, 
-                    'max' => 100,
-                    'minMessage' => 'Le contenu doit contenir au moins {{ 5 }} caractères.',
-                    'maxMessage' => 'Le contenu ne peut pas dépasser {{ 30 }} caractères.']), 
+                    new Assert\NotBlank(),
+                    new Assert\Length(['min' => 5, 'max' => 255,
+                    'minMessage' => 'Le titre doit contenir au moins {{ 5 }} caractères.',
+                    'maxMessage' => 'Le titre ne peut pas dépasser {{ 30 }} caractères.']),
+
                 ],
-                'validation_groups' => ['Default'], // Activation des contraintes de validation
             ])
 
             ->add('dateComment', HiddenType::class, [

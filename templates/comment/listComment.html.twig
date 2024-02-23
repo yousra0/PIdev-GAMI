@@ -133,6 +133,7 @@ background: radial-gradient(circle, rgba(144,87,175,1) 0%, rgba(200,64,153,1) 49
             {% for comment in comments %}
                 <tr>
                     <td>{{comment.id}}</td>
+                    
                     <td>{{comment.contenuComment}}</td>
                     {% if form_errors(form.contenuComment) %}
                     <div class="error-message">

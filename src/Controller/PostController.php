@@ -124,6 +124,17 @@ class PostController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) 
         {
+            $file = $form->get('file')->getData();
+            if ($file) 
+            {
+                $fileName = uniqid().'.'.$file->guessExtension();
+                $file->move(
+                    $this->getParameter('upload_directory'),
+                    $fileName
+                );
+                $post->setFile($fileName); // Assurez-vous que votre entité a une méthode setFile pour stocker le chemin du fichier
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
@@ -132,6 +143,7 @@ class PostController extends AbstractController
 
         return $this->render('post/editPost.html.twig', [
             'form' => $form->createView(),
+            'post' => $post, // Passer l'objet Post au template
         ]);
     }
 

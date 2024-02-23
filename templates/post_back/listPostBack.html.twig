@@ -1,0 +1,65 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}GAMI{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>List post</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Contenu</th>
+                    <th>Date</th>
+                    <th>Image</th>
+                    <th>Likes</th>
+                    <th>Dislikes</th>
+                    <th>Commentaires</th>
+                    <th>Actions des posts</th>
+                    <th>Actions des commentaires</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                    <tr>
+                        <td>{{ post.titre }}</td>
+                        <td>{{ post.contenuPub }}</td>
+                        <td>{{ post.datePub ? post.datePub.format('Y-m-d H:i:s') : '' }}</td>
+                        <td><img src="{{ asset('uploads/' ~ post.file) }}" alt="Image" style="max-width: 100px;"></td>
+                        <td>{{ post.likes }}</td>
+                        <td>{{ post.dislikes }}</td>
+                        <td>
+                            <ul class="comments-list">
+                                <div id="comments-container-{{ post.id }}"></div>
+                                
+                                {% for comment in post.comments %}
+                                    <li>{{ comment.contenuComment }}</li>
+                                    
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td>
+                            <a href="{{ path('deletePostBack', {'id': post.id}) }}" class="btn btn-danger">Delete</a>
+                            <a href="{{ path('editPostBack', {'id': post.id}) }}" class="btn btn-primary">Edit</a>
+                        </td>
+                        <td>
+                            {% for comment in post.comments %}
+
+                    <div class="comment-actions">
+                    <td>
+                        <a href="{{ path('deleteComment', {'id': comment.id}) }}" class="btn btn-danger">Delete</a>
+
+                        <a href="{{ path('editComment', {'id': comment.id}) }}" class="btn btn-primary">Edit</a>
+                    </td>
+                    </div>
+                {% endfor %}
+                        </td>
+                        
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ path('addpostback') }}" class="btn btn-success">Add</a>
+    </div>
+{% endblock %}

@@ -15,6 +15,9 @@ return [
         ],
         '/details' => [[['_route' => 'app_details', '_controller' => 'App\\Controller\\DetailsController::index'], null, null, null, false, false, null]],
         '/Admin' => [[['_route' => 'app_index', '_controller' => 'App\\Controller\\IndexController::index'], null, null, null, false, false, null]],
+        '/post/back' => [[['_route' => 'app_post_back', '_controller' => 'App\\Controller\\PostBackController::index'], null, null, null, false, false, null]],
+        '/postback/back/add' => [[['_route' => 'addpostback', '_controller' => 'App\\Controller\\PostBackController::addPost'], null, null, null, false, false, null]],
+        '/postback/back/listPost' => [[['_route' => 'listPostBack', '_controller' => 'App\\Controller\\PostBackController::listPost'], null, null, null, false, false, null]],
         '/post' => [[['_route' => 'app_post', '_controller' => 'App\\Controller\\PostController::index'], null, null, null, false, false, null]],
         '/post/add' => [[['_route' => 'addpost', '_controller' => 'App\\Controller\\PostController::addPost'], null, null, null, false, false, null]],
         '/post/listPost' => [[['_route' => 'listPost', '_controller' => 'App\\Controller\\PostController::listPost'], null, null, null, false, false, null]],
@@ -38,36 +41,42 @@ return [
                         .'|(*:75)'
                     .')'
                 .')'
-                .'|/post/(?'
-                    .'|d(?'
-                        .'|eletePost/([^/]++)(*:115)'
-                        .'|islike/([^/]++)(*:138)'
+                .'|/post(?'
+                    .'|back/back/(?'
+                        .'|deletePost/([^/]++)(*:124)'
+                        .'|editPost/([^/]++)(*:149)'
                     .')'
-                    .'|editPost/([^/]++)(*:164)'
-                    .'|like/([^/]++)(*:185)'
-                    .'|([^/]++)/comments(*:210)'
+                    .'|/(?'
+                        .'|d(?'
+                            .'|eletePost/([^/]++)(*:184)'
+                            .'|islike/([^/]++)(*:207)'
+                        .')'
+                        .'|editPost/([^/]++)(*:233)'
+                        .'|like/([^/]++)(*:254)'
+                        .'|([^/]++)/comments(*:279)'
+                    .')'
                 .')'
                 .'|/api(?'
-                    .'|/\\.well\\-known/genid/([^/]++)(*:255)'
-                    .'|(?:/(index)(?:\\.([^/]++))?)?(*:291)'
+                    .'|/\\.well\\-known/genid/([^/]++)(*:325)'
+                    .'|(?:/(index)(?:\\.([^/]++))?)?(*:361)'
                     .'|/(?'
-                        .'|docs(?:\\.([^/]++))?(*:322)'
-                        .'|contexts/([^.]+)(?:\\.(jsonld))?(*:361)'
+                        .'|docs(?:\\.([^/]++))?(*:392)'
+                        .'|contexts/([^.]+)(?:\\.(jsonld))?(*:431)'
                     .')'
                 .')'
                 .'|/_(?'
-                    .'|error/(\\d+)(?:\\.([^/]++))?(*:402)'
-                    .'|wdt/([^/]++)(*:422)'
+                    .'|error/(\\d+)(?:\\.([^/]++))?(*:472)'
+                    .'|wdt/([^/]++)(*:492)'
                     .'|profiler/([^/]++)(?'
                         .'|/(?'
-                            .'|search/results(*:468)'
-                            .'|router(*:482)'
+                            .'|search/results(*:538)'
+                            .'|router(*:552)'
                             .'|exception(?'
-                                .'|(*:502)'
-                                .'|\\.css(*:515)'
+                                .'|(*:572)'
+                                .'|\\.css(*:585)'
                             .')'
                         .')'
-                        .'|(*:525)'
+                        .'|(*:595)'
                     .')'
                 .')'
             .')/?$}sDu',
@@ -81,22 +90,24 @@ return [
             [['_route' => 'editComment', '_controller' => 'App\\Controller\\CommentController::editComment'], ['id'], null, null, false, true, null],
             [['_route' => 'edit_comment', '_controller' => 'App\\Controller\\CommentController::editComment'], ['id'], null, null, false, true, null],
         ],
-        115 => [[['_route' => 'deletePost', '_controller' => 'App\\Controller\\PostController::deletePost'], ['id'], null, null, false, true, null]],
-        138 => [[['_route' => 'dislike_post', '_controller' => 'App\\Controller\\PostController::dislikePost'], ['id'], null, null, false, true, null]],
-        164 => [[['_route' => 'editPost', '_controller' => 'App\\Controller\\PostController::editPost'], ['id'], null, null, false, true, null]],
-        185 => [[['_route' => 'like_post', '_controller' => 'App\\Controller\\PostController::likePost'], ['id'], null, null, false, true, null]],
-        210 => [[['_route' => 'get_comments_by_post', '_controller' => 'App\\Controller\\CommentController::getCommentsByPost'], ['postId'], null, null, false, false, null]],
-        255 => [[['_route' => 'api_genid', '_controller' => 'api_platform.action.not_exposed', '_api_respond' => 'true'], ['id'], null, null, false, true, null]],
-        291 => [[['_route' => 'api_entrypoint', '_controller' => 'api_platform.action.entrypoint', '_format' => '', '_api_respond' => 'true', 'index' => 'index'], ['index', '_format'], null, null, false, true, null]],
-        322 => [[['_route' => 'api_doc', '_controller' => 'api_platform.action.documentation', '_format' => '', '_api_respond' => 'true'], ['_format'], null, null, false, true, null]],
-        361 => [[['_route' => 'api_jsonld_context', '_controller' => 'api_platform.jsonld.action.context', '_format' => 'jsonld', '_api_respond' => 'true'], ['shortName', '_format'], null, null, false, true, null]],
-        402 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
-        422 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
-        468 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
-        482 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
-        502 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
-        515 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
-        525 => [
+        124 => [[['_route' => 'deletePostBack', '_controller' => 'App\\Controller\\PostBackController::deletePost'], ['id'], null, null, false, true, null]],
+        149 => [[['_route' => 'editPostBack', '_controller' => 'App\\Controller\\PostBackController::editPost'], ['id'], null, null, false, true, null]],
+        184 => [[['_route' => 'deletePost', '_controller' => 'App\\Controller\\PostController::deletePost'], ['id'], null, null, false, true, null]],
+        207 => [[['_route' => 'dislike_post', '_controller' => 'App\\Controller\\PostController::dislikePost'], ['id'], null, null, false, true, null]],
+        233 => [[['_route' => 'editPost', '_controller' => 'App\\Controller\\PostController::editPost'], ['id'], null, null, false, true, null]],
+        254 => [[['_route' => 'like_post', '_controller' => 'App\\Controller\\PostController::likePost'], ['id'], null, null, false, true, null]],
+        279 => [[['_route' => 'get_comments_by_post', '_controller' => 'App\\Controller\\CommentController::getCommentsByPost'], ['postId'], null, null, false, false, null]],
+        325 => [[['_route' => 'api_genid', '_controller' => 'api_platform.action.not_exposed', '_api_respond' => 'true'], ['id'], null, null, false, true, null]],
+        361 => [[['_route' => 'api_entrypoint', '_controller' => 'api_platform.action.entrypoint', '_format' => '', '_api_respond' => 'true', 'index' => 'index'], ['index', '_format'], null, null, false, true, null]],
+        392 => [[['_route' => 'api_doc', '_controller' => 'api_platform.action.documentation', '_format' => '', '_api_respond' => 'true'], ['_format'], null, null, false, true, null]],
+        431 => [[['_route' => 'api_jsonld_context', '_controller' => 'api_platform.jsonld.action.context', '_format' => 'jsonld', '_api_respond' => 'true'], ['shortName', '_format'], null, null, false, true, null]],
+        472 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
+        492 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
+        538 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
+        552 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
+        572 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
+        585 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
+        595 => [
             [['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

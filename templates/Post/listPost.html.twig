@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>List post</title>
+        <a href="{{ path('addpost') }}" class="button button5">Add</a>
 
     {% block stylesheets %}
         <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -88,6 +89,29 @@
                 color: red;
                 font-size: 14px;
             }
+
+            /* Styles for comment edit and delete buttons */
+            .comment-actions a {
+                margin-right: 5px; /* Espacement entre les boutons */
+                padding: 5px 10px; /* Espacement interne */
+                border-radius: 4px; /* Coins arrondis */
+                text-decoration: none; /* Pas de soulignement */
+            }
+
+            .comment-actions a.edit-button {
+                background-color: #007bff; /* Couleur de fond pour le bouton Edit */
+                color: white; /* Couleur du texte */
+            }
+
+            .comment-actions a.delete-button {
+                background-color: #dc3545; /* Couleur de fond pour le bouton Delete */
+                color: white; /* Couleur du texte */
+            }
+
+            .comment-actions a.edit-button:hover,
+            .comment-actions a.delete-button:hover {
+                opacity: 0.8; /* Légère transparence au survol */
+            }
         </style>
     {% endblock %}
 </head>
@@ -108,6 +132,7 @@
             <form method="post" action="{{ path('add_comment') }}" class="comment-form">
                 <label for="contenuComment">Contenu du commentaire</label>
                 <input type="text" name="contenuComment">
+                {{ form_errors(form.contenuComment) }} <!-- Afficher les erreurs de validation -->
                 <input type="hidden" name="postId" value="{{ post.id }}">
                 <button type="submit">Ajouter un commentaire</button>
             </form>
@@ -118,8 +143,10 @@
                 
                 {% for comment in post.comments %}
                     <li>{{ comment.contenuComment }}</li>
-                    <td><a href="{{ path('deleteComment', {'id': comment.id}) }}">Delete</a></td>
-                    <td><a href="{{ path('editComment', {'id': comment.id}) }}">Edit</a></td>
+                    <div class="comment-actions">
+                        <a href="{{ path('deleteComment', {'id': comment.id}) }}" class="delete-button">Delete</a>
+                        <a href="{{ path('editComment', {'id': comment.id}) }}" class="edit-button">Edit</a>
+                    </div>
                 {% endfor %}
             </ul>
 
@@ -134,7 +161,7 @@
         </div>
     {% endfor %}
 
-    <a href="{{ path('addpost') }}" class="button button5">Add</a>
+
 </div>
 {% endblock %}
 

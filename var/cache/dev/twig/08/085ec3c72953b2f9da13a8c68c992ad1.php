@@ -59,13 +59,13 @@ class __TwigTemplate_6ecb035b530e62278ca73d1b11f67a56 extends Template
     ";
         // line 10
         $this->displayBlock('stylesheets', $context, $blocks);
-        // line 49
+        // line 89
         echo "
 
     ";
-        // line 51
+        // line 91
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 67
+        // line 107
         echo "</head>
 <body>
 
@@ -77,7 +77,7 @@ class __TwigTemplate_6ecb035b530e62278ca73d1b11f67a56 extends Template
                 <nav class=\"main-nav\">
                     <!-- *** Logo Start *** -->
                     <a href=\"";
-        // line 77
+        // line 117
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_index");
         echo "\" class=\"logo\">
                         <img src=\"assets/images/logo.png\" alt=\"\">
@@ -95,19 +95,19 @@ class __TwigTemplate_6ecb035b530e62278ca73d1b11f67a56 extends Template
                     <ul class=\"nav\"> 
                         <li><a href=\"index.html\" >Home</a></li>
                         <li><a href=\"";
-        // line 92
+        // line 132
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_browse");
         echo "\">Browse</a></li>
                         <li><a href=\"";
-        // line 93
+        // line 133
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_details");
         echo "\">Details</a></li>
                         <li><a href=\"";
-        // line 94
+        // line 134
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_streams");
         echo "\">Streams</a></li>
                         <li><a href=\"";
-        // line 95
+        // line 135
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_profile");
         echo "\" class=\"active\">Profile <img src=\"assets/images/profile-header.jpg\" alt=\"\"></a></li>
                     </ul>   
@@ -131,94 +131,100 @@ class __TwigTemplate_6ecb035b530e62278ca73d1b11f67a56 extends Template
 
 
 ";
-        // line 116
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 116, $this->source); })()), 'form_start', ["attr" => ["enctype" => "multipart/form-data", "id" => "votre-formulaire-id"]]);
+        // line 156
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 156, $this->source); })()), 'form_start', ["attr" => ["enctype" => "multipart/form-data", "id" => "votre-formulaire-id"]]);
         echo "
 
 <table>
+<h2>AJOUTER UN POST </h2>
+<br><br>
     <tr>
         <td>";
-        // line 120
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 120, $this->source); })()), "titre", [], "any", false, false, false, 120), 'label', ["label" => "Titre de post"]);
+        // line 162
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 162, $this->source); })()), "titre", [], "any", false, false, false, 162), 'label', ["label" => "Titre de post"]);
         echo "</td>
         <td>
             ";
-        // line 122
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 122, $this->source); })()), "titre", [], "any", false, false, false, 122), 'widget');
+        // line 164
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 164, $this->source); })()), "titre", [], "any", false, false, false, 164), 'widget');
         echo "
             ";
-        // line 124
+        // line 166
         echo "            ";
-        if ($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 124, $this->source); })()), "titre", [], "any", false, false, false, 124), 'errors')) {
-            // line 125
+        if ($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 166, $this->source); })()), "titre", [], "any", false, false, false, 166), 'errors')) {
+            // line 167
             echo "                <div class=\"error-message\">
                     ";
-            // line 126
-            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 126, $this->source); })()), "titre", [], "any", false, false, false, 126), 'errors');
+            // line 168
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 168, $this->source); })()), "titre", [], "any", false, false, false, 168), 'errors');
             echo "
                 </div>
             ";
         }
-        // line 129
+        // line 171
         echo "        </td>
     </tr>
 
     <tr>
         <td>";
-        // line 133
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 133, $this->source); })()), "contenuPub", [], "any", false, false, false, 133), 'label', ["label" => "Contenu de post"]);
+        // line 175
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 175, $this->source); })()), "contenuPub", [], "any", false, false, false, 175), 'label', ["label" => "Contenu de post"]);
         echo "</td>
         <td>
             ";
-        // line 135
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 135, $this->source); })()), "contenuPub", [], "any", false, false, false, 135), 'widget');
+        // line 177
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 177, $this->source); })()), "contenuPub", [], "any", false, false, false, 177), 'widget');
         echo "
             ";
-        // line 137
+        // line 179
         echo "            ";
-        if ($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 137, $this->source); })()), "contenuPub", [], "any", false, false, false, 137), 'errors')) {
-            // line 138
+        if ($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 179, $this->source); })()), "contenuPub", [], "any", false, false, false, 179), 'errors')) {
+            // line 180
             echo "                <div class=\"error-message\">
                     ";
-            // line 139
-            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 139, $this->source); })()), "contenuPub", [], "any", false, false, false, 139), 'errors');
+            // line 181
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 181, $this->source); })()), "contenuPub", [], "any", false, false, false, 181), 'errors');
             echo "
                 </div>
             ";
         }
-        // line 142
+        // line 184
         echo "        </td>
     </tr>
 
     <tr>
         <td>";
-        // line 146
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 146, $this->source); })()), "datePub", [], "any", false, false, false, 146), 'widget', ["attr" => ["type" => "date"]]);
+        // line 188
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 188, $this->source); })()), "datePub", [], "any", false, false, false, 188), 'widget', ["attr" => ["type" => "date"]]);
         echo "</td>
     </tr>
 
     <tr>
         <td>";
-        // line 150
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 150, $this->source); })()), "file", [], "any", false, false, false, 150), 'label', ["label" => "Fichier"]);
+        // line 192
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 192, $this->source); })()), "file", [], "any", false, false, false, 192), 'label', ["label" => "Fichier"]);
         echo "</td>
         <td>";
-        // line 151
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 151, $this->source); })()), "file", [], "any", false, false, false, 151), 'widget');
+        // line 193
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 193, $this->source); })()), "file", [], "any", false, false, false, 193), 'widget');
         echo "</td>
     </tr>
 </table>
 
 ";
-        // line 155
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 155, $this->source); })()), "save", [], "any", false, false, false, 155), 'widget', ["attr" => ["class" => "button button5"]]);
+        // line 197
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 197, $this->source); })()), "save", [], "any", false, false, false, 197), 'widget', ["attr" => ["class" => "button button5"]]);
         echo "
 <!-- Bouton de réinitialisation -->
 <button type=\"reset\" class=\"button button5\">Reset</button>
+<a href=\"";
+        // line 200
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("listPost");
+        echo "\" class=\"btn btn-secondary\">List Posts</a>
 
 ";
-        // line 159
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 159, $this->source); })()), 'form_end');
+        // line 202
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 202, $this->source); })()), 'form_end');
         echo "
 </body>
 </html>
@@ -282,35 +288,75 @@ class __TwigTemplate_6ecb035b530e62278ca73d1b11f67a56 extends Template
         echo "\">
     
         <style>
-            .error-message {
-                color: red;
-                font-size: 14px;
-            }
+        /* Styles pour le texte en blanc */
+        body, .main-nav a, .search-input input, .search-input i, .nav a,
+        form label, form input[type=\"text\"], form input[type=\"date\"], form button {
+            color: #ffffff; /* Texte en blanc */
+        }
+        /* Styles pour les messages d'erreur en rouge */
+        .error-message {
+            color: #ff0000; /* Rouge */
+            font-size: 14px;
+        }
+        /* Styles pour le formulaire */
+        form {
+            margin-top: 20px;
+        }
 
-            /* CSS pour les boutons Save et Reset */
-            .button.button5 {
-                border-radius: 20px; /* Arrondi les bords */
-                transition: background-color 0.3s ease; /* Animation de transition pour le changement de couleur */
-                padding: 10px 20px; /* Ajuste la taille du bouton en ajustant le padding */
-                font-size: 16px; /* Ajuste la taille de la police */
-                font-weight: bold; /* Rend la police en gras */
-            }
+        /* Styles pour les étiquettes des champs */
+        form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
 
-            /* Au survol du bouton */
-            .button.button5:hover {
-                background-color: rgba(255, 0, 127, 0.4); /* Rose avec une opacité de 40% */
-            }
+        /* Styles pour les champs de texte */
+        form input[type=\"text\"], form input[type=\"date\"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #333333; /* Couleur de fond */
+            color: #ffffff; /* Couleur du texte */
+        }
 
-            .button.button5 {
-            border-radius: 20px; /* Arrondi les bords */
-            transition: background-color 0.3s ease; /* Animation de transition pour le changement de couleur */
+        /* Styles pour le bouton de soumission */
+        form .button.button5 {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #ff007f; /* Couleur de fond */
+            color: #ffffff; /* Couleur du texte */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
         /* Au survol du bouton */
-        .button.button5:hover {
-            background-color: rgba(255, 0, 127, 0.4); /* Rose avec une opacité de 40% */
+        form .button.button5:hover {
+            background-color: rgba(255, 0, 127, 0.8); /* Rose avec une opacité de 80% */
         }
-        </style>
+
+        /* Styles pour le bouton de réinitialisation */
+        form button[type=\"reset\"].button5 {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #ff007f; /* Couleur de fond */
+            color: #ffffff; /* Couleur du texte */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Au survol du bouton de réinitialisation */
+        form button[type=\"reset\"].button5:hover {
+            background-color: rgba(255, 0, 127, 0.8); /* Rose avec une opacité de 80% */
+        }
+    </style>
 
     ";
         
@@ -321,7 +367,7 @@ class __TwigTemplate_6ecb035b530e62278ca73d1b11f67a56 extends Template
 
     }
 
-    // line 51
+    // line 91
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -331,32 +377,32 @@ class __TwigTemplate_6ecb035b530e62278ca73d1b11f67a56 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 52
+        // line 92
         echo "        <script src=";
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("vendor/jquery/jquery.min.js"), "html", null, true);
         echo "></script>
         <script src=";
-        // line 53
+        // line 93
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("vendor/bootstrap/js/bootstrap.min.js"), "html", null, true);
         echo "></script>
         <script src=";
-        // line 54
+        // line 94
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/js/isotope.min.js"), "html", null, true);
         echo "></script>
         <script src=";
-        // line 55
+        // line 95
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/js/owl-carousel.js"), "html", null, true);
         echo "></script>
         <script src=";
-        // line 56
+        // line 96
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/js/owl-carousel.js"), "html", null, true);
         echo "></script>
         <script src=";
-        // line 57
+        // line 97
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/js/popup.js"), "html", null, true);
         echo "></script>
         <script src=";
-        // line 58
+        // line 98
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/js/custom.js"), "html", null, true);
         echo "></script>
 
@@ -396,7 +442,7 @@ class __TwigTemplate_6ecb035b530e62278ca73d1b11f67a56 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  360 => 58,  356 => 57,  352 => 56,  348 => 55,  344 => 54,  340 => 53,  335 => 52,  325 => 51,  281 => 15,  277 => 14,  273 => 13,  269 => 12,  264 => 11,  254 => 10,  235 => 5,  221 => 159,  214 => 155,  207 => 151,  203 => 150,  196 => 146,  190 => 142,  184 => 139,  181 => 138,  178 => 137,  174 => 135,  169 => 133,  163 => 129,  157 => 126,  154 => 125,  151 => 124,  147 => 122,  142 => 120,  135 => 116,  111 => 95,  107 => 94,  103 => 93,  99 => 92,  81 => 77,  69 => 67,  67 => 51,  63 => 49,  61 => 10,  58 => 9,  52 => 5,  46 => 1,);
+        return array (  406 => 98,  402 => 97,  398 => 96,  394 => 95,  390 => 94,  386 => 93,  381 => 92,  371 => 91,  287 => 15,  283 => 14,  279 => 13,  275 => 12,  270 => 11,  260 => 10,  241 => 5,  227 => 202,  222 => 200,  216 => 197,  209 => 193,  205 => 192,  198 => 188,  192 => 184,  186 => 181,  183 => 180,  180 => 179,  176 => 177,  171 => 175,  165 => 171,  159 => 168,  156 => 167,  153 => 166,  149 => 164,  144 => 162,  135 => 156,  111 => 135,  107 => 134,  103 => 133,  99 => 132,  81 => 117,  69 => 107,  67 => 91,  63 => 89,  61 => 10,  58 => 9,  52 => 5,  46 => 1,);
     }
 
     public function getSourceContext()
@@ -418,35 +464,75 @@ class __TwigTemplate_6ecb035b530e62278ca73d1b11f67a56 extends Template
         <link rel=\"stylesheet\" href=\"{{ asset('assets/css/animate.css') }}\">
     
         <style>
-            .error-message {
-                color: red;
-                font-size: 14px;
-            }
+        /* Styles pour le texte en blanc */
+        body, .main-nav a, .search-input input, .search-input i, .nav a,
+        form label, form input[type=\"text\"], form input[type=\"date\"], form button {
+            color: #ffffff; /* Texte en blanc */
+        }
+        /* Styles pour les messages d'erreur en rouge */
+        .error-message {
+            color: #ff0000; /* Rouge */
+            font-size: 14px;
+        }
+        /* Styles pour le formulaire */
+        form {
+            margin-top: 20px;
+        }
 
-            /* CSS pour les boutons Save et Reset */
-            .button.button5 {
-                border-radius: 20px; /* Arrondi les bords */
-                transition: background-color 0.3s ease; /* Animation de transition pour le changement de couleur */
-                padding: 10px 20px; /* Ajuste la taille du bouton en ajustant le padding */
-                font-size: 16px; /* Ajuste la taille de la police */
-                font-weight: bold; /* Rend la police en gras */
-            }
+        /* Styles pour les étiquettes des champs */
+        form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
 
-            /* Au survol du bouton */
-            .button.button5:hover {
-                background-color: rgba(255, 0, 127, 0.4); /* Rose avec une opacité de 40% */
-            }
+        /* Styles pour les champs de texte */
+        form input[type=\"text\"], form input[type=\"date\"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #333333; /* Couleur de fond */
+            color: #ffffff; /* Couleur du texte */
+        }
 
-            .button.button5 {
-            border-radius: 20px; /* Arrondi les bords */
-            transition: background-color 0.3s ease; /* Animation de transition pour le changement de couleur */
+        /* Styles pour le bouton de soumission */
+        form .button.button5 {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #ff007f; /* Couleur de fond */
+            color: #ffffff; /* Couleur du texte */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
         /* Au survol du bouton */
-        .button.button5:hover {
-            background-color: rgba(255, 0, 127, 0.4); /* Rose avec une opacité de 40% */
+        form .button.button5:hover {
+            background-color: rgba(255, 0, 127, 0.8); /* Rose avec une opacité de 80% */
         }
-        </style>
+
+        /* Styles pour le bouton de réinitialisation */
+        form button[type=\"reset\"].button5 {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #ff007f; /* Couleur de fond */
+            color: #ffffff; /* Couleur du texte */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Au survol du bouton de réinitialisation */
+        form button[type=\"reset\"].button5:hover {
+            background-color: rgba(255, 0, 127, 0.8); /* Rose avec une opacité de 80% */
+        }
+    </style>
 
     {% endblock %}
 
@@ -519,6 +605,8 @@ class __TwigTemplate_6ecb035b530e62278ca73d1b11f67a56 extends Template
 {{ form_start(form, {'attr': {'enctype': 'multipart/form-data', 'id': 'votre-formulaire-id'}}) }}
 
 <table>
+<h2>AJOUTER UN POST </h2>
+<br><br>
     <tr>
         <td>{{ form_label(form.titre, \"Titre de post\") }}</td>
         <td>
@@ -558,6 +646,7 @@ class __TwigTemplate_6ecb035b530e62278ca73d1b11f67a56 extends Template
 {{ form_widget(form.save, {'attr': {'class': 'button button5'}}) }}
 <!-- Bouton de réinitialisation -->
 <button type=\"reset\" class=\"button button5\">Reset</button>
+<a href=\"{{ path('listPost') }}\" class=\"btn btn-secondary\">List Posts</a>
 
 {{ form_end(form) }}
 </body>

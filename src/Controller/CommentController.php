@@ -60,6 +60,7 @@ class CommentController extends AbstractController
         $comment->setContenuComment($request->request->get('contenuComment'));
         $comment->setDateComment(new \DateTime());
         $comment->setPost($post);
+        
 
         // Persist and flush the new Comment entity
         $em->persist($comment);
@@ -79,8 +80,6 @@ class CommentController extends AbstractController
         return $this->render('post/listPost.html.twig', [
             'comments' => $comments, 
             
-
-
         ]);
     }
 

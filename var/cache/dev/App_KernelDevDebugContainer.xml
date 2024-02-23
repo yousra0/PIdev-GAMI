@@ -536,6 +536,13 @@
         <argument type="service" id=".service_locator.mx0UMmY.App\Controller\IndexController"/>
       </call>
     </service>
+    <service id="App\Controller\PostBackController" class="App\Controller\PostBackController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.mx0UMmY.App\Controller\PostBackController"/>
+      </call>
+    </service>
     <service id="App\Controller\PostController" class="App\Controller\PostController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -7741,6 +7748,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\IndexController" class="App\Controller\IndexController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\IndexController" class="App\Controller\IndexController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\IndexController" class="App\Controller\IndexController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PostBackController" class="App\Controller\PostBackController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PostBackController" class="App\Controller\PostBackController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\PostBackController" class="App\Controller\PostBackController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PostController" class="App\Controller\PostController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PostController" class="App\Controller\PostController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\PostController" class="App\Controller\PostController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -8198,11 +8208,15 @@
         <argument key="post" type="service_closure" id=".errored..service_locator.4WI1Dtz.App\Entity\Post"/>
       </argument>
     </service>
-    <service id=".service_locator.bq1kX0i" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.mgB8EtS" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\CommentController::addComment" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\CommentController::listComment" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\PostBackController::addPost" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\PostBackController::deletePost" type="service_closure" id=".service_locator.4WI1Dtz"/>
+        <argument key="App\Controller\PostBackController::editPost" type="service_closure" id=".service_locator.4WI1Dtz"/>
+        <argument key="App\Controller\PostBackController::listPost" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\PostController::addPost" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\PostController::deletePost" type="service_closure" id=".service_locator.4WI1Dtz"/>
         <argument key="App\Controller\PostController::dislikePost" type="service_closure" id=".service_locator.4WI1Dtz"/>
@@ -8215,6 +8229,10 @@
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="App\Controller\CommentController:addComment" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\CommentController:listComment" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\PostBackController:addPost" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\PostBackController:deletePost" type="service_closure" id=".service_locator.4WI1Dtz"/>
+        <argument key="App\Controller\PostBackController:editPost" type="service_closure" id=".service_locator.4WI1Dtz"/>
+        <argument key="App\Controller\PostBackController:listPost" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\PostController:addPost" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\PostController:deletePost" type="service_closure" id=".service_locator.4WI1Dtz"/>
         <argument key="App\Controller\PostController:dislikePost" type="service_closure" id=".service_locator.4WI1Dtz"/>
@@ -8672,6 +8690,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.mx0UMmY" method="withContext"/>
     </service>
+    <service id=".service_locator.mx0UMmY.App\Controller\PostBackController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\PostBackController"/>
+      <argument>App\Controller\PostBackController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.mx0UMmY" method="withContext"/>
+    </service>
     <service id=".service_locator.mx0UMmY.App\Controller\PostController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\PostController"/>
       <argument>App\Controller\PostController</argument>
@@ -8921,12 +8945,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.bq1kX0i"/>
+      <argument type="service" id=".service_locator.mgB8EtS"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.bq1kX0i"/>
+      <argument type="service" id=".service_locator.mgB8EtS"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -10224,7 +10248,7 @@
     <service id="ApiPlatform\Core\Api\IdentifiersExtractorInterface" alias="api_platform.identifiers_extractor.cached"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.bq1kX0i"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.mgB8EtS"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -10251,7 +10275,7 @@
     <service id=".service_locator.bnaLdkn" alias="api_platform.serializer_locator"/>
     <service id=".service_locator.Xbsa8iG" alias="api_platform.filter_locator"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
-    <service id=".service_locator.FS77Hoq" alias=".service_locator.bq1kX0i"/>
+    <service id=".service_locator.yj3VyOR" alias=".service_locator.mgB8EtS"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.dJcd1P." alias=".service_locator.iKRJsXO"/>
     <service id=".service_locator.A4k6Zds" alias=".service_locator.YXH_UHb"/>
