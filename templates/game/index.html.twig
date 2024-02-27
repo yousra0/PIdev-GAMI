@@ -1,0 +1,71 @@
+{% extends 'base2.html.twig' %}
+
+
+{% block body %}
+<div class="content-body">
+
+            <div class="row page-titles mx-0">
+                <div class="col p-md-0">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
+                    </ol>
+                </div>
+            </div>
+
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h4>Table Tournois</h4>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>name</th>
+                                                <th>description</th>
+                                                <th>image</th>
+                                                <th>lien</th>
+                                                <th>categorie</th>
+                                                 <th>date</th>
+                                                <th>#</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <div>
+                                        {% for game in games %}
+                                            <tr>
+                                                <th>{{game.id}}</th>
+                                                <td>{{ game.name }}</td>
+                                                 <td>{{game.description}}</td>
+
+                                                  <td><img src="{{ asset('uploads/' ~ game.image) }}" alt="Image" style="max-width: 70px; border-radius: 70%; float: left;"></td>
+                                                <td><span class="badge badge-primary px-2">{{game.lien}}</span>
+                                                </td>
+                                               
+                                               <td>{{ game.categorie.name }}</td>
+
+                                                <td>{{game.date|date('Y-m-d')}}</td>
+                                                
+                                                <td>
+                    <a href="{{ path('app_game_show', {'id': game.id}) }}">show</a>
+                    <a href="{{ path('app_game_edit', {'id': game.id}) }}">edit</a>
+                </td>
+                                                
+                                                
+                                            </tr>
+                                        {% endfor %}
+                                        <a href="{{ path('app_game_new') }}">Create new</a>
+                                        </div>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+    
+{% endblock %}
+
