@@ -1,0 +1,23 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}GAMI{% endblock %}
+
+{% block body %}
+    {% block content %}
+    <div class="container">
+        <h1>Liste de reponse</h1>
+
+        {% for reponse in reponse %}
+            <div class="reponse">
+                <p>{{ reponse.ContenuRep }}</p>
+                <p>Date: {{ reponse.DateRep ? reponse.DateRep.format('Y-m-d H:i:s') : '' }}</p>
+
+                <div class="reponse-actions">
+                    <a href="{{ path('deleteReponse', {'id': reponse.id}) }}" class="button button5">Delete</a>
+                    <a href="{{ path('editReponse', {'id': reponse.id}) }}" class="button button5">Edit</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% endblock %}
+{% endblock %}

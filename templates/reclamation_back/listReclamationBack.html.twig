@@ -1,0 +1,40 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}GAMI{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>List post</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Contenu</th>
+                    <th>Date</th>
+                    <th>Actions des posts</th>
+
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for reclamation in reclamations %}
+                    <tr>
+                        <td>{{ reclamation.TitreRec }}</td>
+                        <td>{{ reclamation.ContenuRec }}</td>
+                        <td>{{ reclamation.DateRec ? reclamation.DateRec.format('Y-m-d H:i:s') : '' }}</td>
+                       
+                        <td>
+                            <a href="{{ path('deleteReclamationBack', {'id': reclamation.id}) }}" class="btn btn-danger">Delete</a>
+                        </td>
+
+
+                    
+
+                        
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    </div>
+{% endblock %}

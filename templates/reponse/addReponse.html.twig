@@ -1,0 +1,33 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}GAMI{% endblock %}
+
+{% block body %}
+    <div class="login-form-bg h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100">
+                <div class="col-xl-6">
+                    <div class="form-input-content">
+                        <div class="card login-form mb-0">
+                            <div class="card-body pt-5">
+                                <a class="text-center" href="index.html"> <h3>AJOUTER UNE REPONSE BACK</h3></a>
+                                {{ form_start(form) }}
+                               
+                                <div class="form-group">
+                                    {{ form_row(form.ContenuRep, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_row(form.DateRep, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary">Save</button>
+                                
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
