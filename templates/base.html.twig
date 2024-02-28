@@ -40,25 +40,26 @@
 
 
     <!-- Additional CSS Files -->
-     {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-            <link href={{asset('vendor/bootstrap/css/bootstrap.min.css')}} rel="stylesheet">
-    <link rel="stylesheet" href={{asset("assets/css/fontawesome.css")}}>
-    <link rel="stylesheet" href={{asset("assets/css/templatemo-cyborg-gaming.css")}}>
-    <link rel="stylesheet" href={{asset("assets/css/owl.css")}}>
-    <link rel="stylesheet" href={{asset('assets/css/animate.css')}}>
-    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    {% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/templatemo-cyborg-gaming.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/owl.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
     <style>
-            /* Ajouter le style pour les th */
-            th {
-                color: white;
-            }
-            
-            .form-error-message {
+        /* Ajouter le style pour les th */
+        th {
+            color: white;
+        }
+
+        .form-error-message {
             color: white !important;
         }
-        </style>
-    {% endblock %}
+    </style>
+{% endblock %}
+
 <!--
 
 TemplateMo 579 Cyborg Gaming
@@ -91,7 +92,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="index.html" class="logo">
-                        <img src={{asset('images/gami.png')}}  alt="Logo">
+                        <img src="{{ asset('images/gami.png') }}" alt="Logo">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Search End ***** -->
@@ -105,10 +106,15 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="index.html" class="active">Home</a></li>
-                        <li><a href="browse.html">Browse</a></li>
-                        <li><a href="details.html">Details</a></li>
-                        <li><a href="streams.html">Streams</a></li>
-                        <li><a href="profile.html">Profile <img src={{asset('images/profile-header.jpg')}} alt="pic profile"></a></li>
+<li><a href="browse.html">Browse</a></li>
+<li><a href="details.html">Details</a></li>
+<li><a href="streams.html">Streams</a></li>
+<li>
+    <a href="profile.html">Profile 
+        <img src="{{ asset('images/profile-header.jpg') }}" alt="pic profile">
+    </a>
+</li>
+
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -326,18 +332,20 @@ https://templatemo.com/tm-579-cyborg-gaming
   <!-- Bootstrap core JavaScript -->
   {# <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.min.js"></script> #}
-    {% block javascripts %}
+   {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
-  <script src={{asset("assets/js/isotope.min.js")}} defer ></script>
-  <script src={{asset("assets/js/owl-carousel.js")}} defer></script>
-  <script src={{asset("assets/js/tabs.js")}} defer></script>
-  <script src={{asset("assets/js/popup.js")}} defer></script>
-  <script src={{asset("assets/js/custom.js")}} defer></script>
-  <script src={{asset("vendor/jquery/jquery.min.js")}} defer></script>
-  <script src={{asset("vendor/bootstrap/js/bootstrap.min.js")}} defer></script>
-  {% endblock %}
+    <script src="{{ asset('assets/js/isotope.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/owl-carousel.js') }}" defer></script>
+    <script src="{{ asset('assets/js/tabs.js') }}" defer></script>
+    <script src="{{ asset('assets/js/popup.js') }}" defer></script>
+    <script src="{{ asset('assets/js/custom.js') }}" defer></script>
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}" defer></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}" defer></script>
+{% endblock %}
+
 
   </body>
 
 </html>
+
 

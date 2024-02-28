@@ -16,7 +16,7 @@ class FrontController extends AbstractController
     public function index(GameRepository $gameRepository): Response
     {
         return $this->render('front/index.html.twig', [
-            'games' => $gameRepository->findAll(),
+            'games' => $gameRepository->findBy([],['date'=>'DESC']),
         ]);
         
     }
