@@ -1,11 +1,11 @@
 {% extends 'base2.html.twig' %}
 
-{% block title %}New Game{% endblock %}
+{% block title %}New Game{% endblock %} {# Set the title of the page #}
 
 {% block body %}
-    <h1>Create new Game</h1>
+    <h1>Create new Game</h1> {# Display heading for the form #}
 
-    {{ include('game/_form.html.twig') }}
+    {{ include('game/_form.html.twig') }} {# Include the form template #}
 
-    <a href="{{ path('app_game_index') }}">back to list</a>
+    
 {% endblock %}

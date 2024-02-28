@@ -6,6 +6,7 @@ use App\Entity\Categorie;
 use App\Entity\Game;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -35,9 +36,23 @@ class GameType extends AbstractType
             ->add('image', FileType::class, [
                 'label' => 'Fichier',
                 'data_class' => null,
-                'required' => false, // Facultatif, si le téléchargement de fichier n'est pas obligatoire
-                'mapped' => true, // Si vous ne stockez pas directement le fichier dans l'entité Post
-                'attr' => ['accept' => '.jpg,.jpeg,.png,.gif'] // Spécifiez les types de fichiers acceptés
+                'required' => false,
+                'mapped' => true,
+                'attr' => ['accept' => '.jpg,.jpeg,.png,.gif'],
+                'constraints' => [
+                    new Assert\File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/gif',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid image file (jpg, png, gif)',
+                    ]),
+                    new Assert\NotBlank([
+                        'message' => 'Please upload an image file',
+                    ]),
+                ],
             ])
             ->add('lien', TextType::class, [
                 'constraints' => [
@@ -50,8 +65,11 @@ class GameType extends AbstractType
                 'choice_label' => 'name',   
                 'multiple' => false,
                 'expanded' => false
+                
               ])
+            
             ->add('save',SubmitType::class)
+           
         ;
     }
 

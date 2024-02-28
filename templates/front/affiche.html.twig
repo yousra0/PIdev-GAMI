@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title game.name %}
+
+{% block body %}
+    <article>
+        <h1>{{game.name}}</h1>
+        <p>{{game.description}}</p>
+    </article>
+
+
+    <a href="{{ path('app_front') }}">Go Back</a>
+{% endblock %}

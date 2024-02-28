@@ -1,8 +1,6 @@
 {% extends 'base2.html.twig' %}
 
 {% block body %}
-    
-
     <div class="login-form-bg h-100">
         <div class="container h-100">
             <div class="row justify-content-center h-100">
@@ -10,35 +8,21 @@
                     <div class="form-input-content">
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
-                                
-                                    <a class="text-center" href="index.html"> <h4>Jeux</h4></a>
-        
-                                 {{ form_start(form, {'attr': {'enctype': 'multipart/form-data', 'id': 'votre-formulaire-id'}}) }}
-                 <div class="form-group">
-                {{ form_row(form.name, {'attr': {'class': 'form-control','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: black'}}) }}
-            
-            
-                {{ form_row(form.description, {'attr': {'class': 'form-control','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: black'}}) }}
-                
-                
-                {{ form_row(form.image, {'label': 'Fichier', 'attr': {'class': 'form-control', 'data-error-class': 'error-message'}, 'label_attr': {'style': 'color: black'}}) }}
-               
-               
-                
-                {{ form_row(form.lien, {'attr': {'class': 'form-control','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: black'}}) }}
-               
-                {{ form_row(form.categorie, {'attr': {'class': 'form-control','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: black'}}) }}
-                                {{ form_row(form.date, {'attr': {'class': 'form-control','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: black'}}) }}
+                                <a class="text-center" href="index.html"><h4>Jeux</h4></a>
 
-                </div>
-                 {{ form_row(form.save,{'attr': {'class': 'btn login-form__btn submit w-100'}})}}
-                 
-            {{ form_end(form) }}
-                                
-                               
-                                    <p class="mt-5 login-form__footer"> <a href="{{ path('app_game_index') }}" class="text-primary">Back </a> </p>
-                                    
-                                </div>
+                                {{ form_start(form, {'attr': {'enctype': 'multipart/form-data', 'id': 'votre-formulaire-id'}}) }}
+                                    <div class="form-group">
+                                        {{ form_row(form.name, {'attr': {'class': 'form-control','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: black'}}) }}
+                                        {{ form_row(form.description, {'attr': {'class': 'form-control','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: black'}}) }}
+                                        {{ form_row(form.image, {'label': 'Fichier', 'attr': {'class': 'form-control', 'data-error-class': 'error-message'}, 'label_attr': {'style': 'color: black'}}) }}
+                                        {{ form_row(form.lien, {'attr': {'class': 'form-control','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: black'}}) }}
+                                        {{ form_row(form.categorie, {'attr': {'class': 'form-control','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: black'}}) }}
+                                        {{ form_row(form.date, {'attr': {'class': 'form-control','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: black'}}) }}
+                                    </div>
+                                    {{ form_row(form.save,{'attr': {'class': 'btn login-form__btn submit w-100'}})}}
+                                {{ form_end(form) }}
+
+                                <p class="mt-5 login-form__footer"><a href="{{ path('app_game_index') }}" class="text-primary">Back </a></p>
                             </div>
                         </div>
                     </div>

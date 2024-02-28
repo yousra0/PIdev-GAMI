@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Find all the best games on earth {% endblock %}
+
+{% block body %}
+    <h1>{{ games|length }} Games</h1>
+
+    {% for game in games %}
+        <article>
+            <h2><a href="{{ path('app_front_show',{id:game.id})}}">{{game.name}}</a></h2>
+            <p>{{game.description}}</p>
+        </article>    
+    {% endfor %}
+{% endblock %}

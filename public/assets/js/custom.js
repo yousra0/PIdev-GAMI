@@ -33,7 +33,6 @@
 	  } else {
 	    $("header").removeClass("background-header");
 	  }
-	  
 	});
 	
 	$('.filters ul li').click(function(){
