@@ -43,6 +43,7 @@ class GameController extends AbstractController
     
             $entityManager->persist($game);
             $entityManager->flush();
+            $this->addFlash('success','Game successfully created!');
     
             return $this->redirectToRoute('app_game_index', [], Response::HTTP_SEE_OTHER);
         }

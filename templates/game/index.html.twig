@@ -23,9 +23,9 @@
                     <tbody>
                         {% for game in games %}
                             <tr>
-                              <td>{{ game.description }}</td>
-                                  <td>{{ game.id }}</td>
+                                <td>{{ game.id }}</td>
                                 <td>{{ game.name }}</td>
+                                <td>{{ game.description }}</td>
                                 <td><img src="{{ asset('uploads/' ~ game.image) }}" alt="Image" width="100" height="100"></td>
                                 <td><span class="badge badge-primary px-2">{{ game.lien }}</span></td>
                                 <td>{{ game.categorie.name }}</td>
