@@ -1,37 +1,47 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
-{% block title %}Categorie index{% endblock %}
+
 
 {% block body %}
-    <h1>Categorie index</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <!-- Barre latérale gauche -->
+            <!-- Ajoutez ici votre contenu de la barre latérale -->
+        </div>
+        <div class="col-md-9">
+            <!-- Contenu principal -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for categorie in categories %}
+                    <tr>
+                        <td style="color: black;">{{ categorie.id }}</td>
+                        <td style="color: black;">{{ categorie.name }}</td>
+                        <td style="color: black;">{{ categorie.description }}</td>
+                        <td>
+                            <a href="{{ path('app_categorie_show', {'id': categorie.id}) }}">Show</a>
+                            <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}">Edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">No records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for categorie in categories %}
-            <tr>
-                <td style="color: white;">{{ categorie.id }}</td>
-                <td style="color: white;">{{ categorie.name }}</td>
-                <td style="color: white;">{{ categorie.description }}</td>
-                <td>
-                    <a href="{{ path('app_categorie_show', {'id': categorie.id}) }}">show</a>
-                    <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_categorie_new') }}">Create new</a>
+            <a href="{{ path('app_categorie_new') }}">Create new</a>
+        </div>
+    </div>
+</div>
 {% endblock %}
+
