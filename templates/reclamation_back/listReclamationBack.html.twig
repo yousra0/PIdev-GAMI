@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="container">
-        <h1>List des réclamations</h1>
+        <h1>Liste des réclamations</h1>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -12,8 +12,7 @@
                     <th>Contenu</th>
                     <th>Date</th>
                     <th>Actions des réclamations</th>
-
-                    
+                    <th>Réponses</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,19 +21,31 @@
                         <td>{{ reclamation.TitreRec }}</td>
                         <td>{{ reclamation.ContenuRec }}</td>
                         <td>{{ reclamation.DateRec ? reclamation.DateRec.format('Y-m-d H:i:s') : '' }}</td>
-                       
                         <td>
                             <a href="{{ path('deleteReclamationBack', {'id': reclamation.id}) }}" class="btn btn-danger">Delete</a>
                         </td>
 
+                        <td>
+                            <!-- Form for adding a response -->
+                            <form method="POST" action="{{ path('addreponse') }}" class="reponse-form">
+                                <label for="contenuRep">Contenu de la réponse</label>
+                                <input type="text" name="contenuRep">
+                                <input type="hidden" name="reclamationId" value="{{ reclamation.id }}">
+                                <button type="submit">Ajouter une réponse</button>
+                            </form>
 
-                    
-
-                        
+                            <ul class="reponses-list">
+                                {% for reponse in reclamation.reponses %}
+                                    <li>{{ reponse.contenuRep }}</li>
+                                    <div class="reponse-actions">
+                                        <!-- Actions des réponses -->
+                                    </div>
+                                {% endfor %}
+                            </ul>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-        
     </div>
 {% endblock %}

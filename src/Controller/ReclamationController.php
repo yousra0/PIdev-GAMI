@@ -77,17 +77,11 @@ class ReclamationController extends AbstractController
 
 
    
-    
-    #[Route('/reclamation/deleteReclamation{id}', name: 'deleteReclamation')]
-    public function deleteReclamation(Request $request, int $id): Response
+
+    #[Route('/reclamation/deleteReclamation/{id}', name: 'deleteReclamation')]
+    public function deleteReclamation(Request $request, Reclamation $reclamation): Response
     {
         $em = $this->getDoctrine()->getManager();
-        $reclamation = $em->getRepository(Reclamation::class)->find($id);
-
-        if (!$reclamation) {
-            $this->addFlash('error', 'Reclamation not found.');
-            return $this->redirectToRoute('listReclamation');
-        }
         $em->remove($reclamation);
         $em->flush();
 

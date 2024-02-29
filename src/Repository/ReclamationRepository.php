@@ -21,6 +21,15 @@ class ReclamationRepository extends ServiceEntityRepository
         parent::__construct($registry, Reclamation::class);
     }
 
+    public function findAllWithReponses()
+{
+    return $this->createQueryBuilder('r')
+        ->leftJoin('r.reponses', 'reponses')
+        ->addSelect('reponses')
+        ->getQuery()
+        ->getResult();
+}
+
 //    /**
 //     * @return Reclamation[] Returns an array of Reclamation objects
 //     */

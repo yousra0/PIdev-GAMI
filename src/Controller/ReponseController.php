@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Reclamation;
 use App\Form\ReclamationType as FormReclamationType;
@@ -29,29 +30,26 @@ class ReponseController extends AbstractController
         ]);
     }
 
-    #[Route('/reponse/add', name: 'addReponse')]
+    #[Route('reponse/reponse/add', name: 'addReponse')]
     public function addReponse(Request $request, ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getManager();
-        $reponse= new Reponse;
-        $form=$this->createForm(ReponseType::class, $reponse);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) 
-        {
-            $reponse->setDateRep(new DateTime());
-            $em = $this->getDoctrine()->getManager();
+        // Get the reclamation ID from the request
+        $reclamationId = $request->request->get('reclamationId');
+        $reclamation = $em->getRepository(Reclamation::class)->find($reclamationId);
 
+        // Create a new Comment entity
+        $reponse = new Reponse();
+        $reponse->setContenuRep($request->request->get('contenuRep'));
+        $reponse->setDateRep(new \DateTime());
+        $reponse->setReclamation($reclamation);
 
-                $em->persist($reponse);
-                $em->flush();
-                return $this->redirectToRoute('listReponse');
-        }
+        // Persist and flush the new reponse entity
+        $em->persist($reponse);
+        $em->flush();
 
-            return $this->render('reponse/addReponse.html.twig', [
-                'reponse' => $reponse,
-                'form' => $form->createView(),
-            ]);
+        return $this->redirectToRoute('listReclamationBack');
 
     }
 
@@ -65,8 +63,15 @@ class ReponseController extends AbstractController
     {     
         $manager = $doctrine->getManager();
 
+        $ReponseRepository=$doctrine->getRepository(Reponse::class);
+        $reponses=$ReponseRepository->findAll();
+
+        return $this->render('reponse/listReponse.html.twig', [
+            'reponses' => $reponses,  // Corrected variable name
+        ]);
+
         // Récupérer les réponses depuis la base de données
-        $reponses = $this->getDoctrine()->getRepository(Reponse::class)->findAll();
+        /*$reponses = $this->getDoctrine()->getRepository(Reponse::class)->findAll();
         
         // Charger les commentaires pour chaque post
         foreach ($reponses as $reponse) 
@@ -81,7 +86,7 @@ class ReponseController extends AbstractController
         return $this->render('reponse/listReponse.html.twig', [
             'reponses' => $reponses,  // Corrected variable name
             'form' => $form->createView(),
-        ]);
+        ]);*/
     }
 
 
