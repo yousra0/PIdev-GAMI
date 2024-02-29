@@ -81,6 +81,7 @@ class GameController extends AbstractController
                 $game->setImage($imageName);
             }
             $entityManager->flush();
+            $this->addFlash('success','Game successfully updated!');
     
             return $this->redirectToRoute('app_game_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -97,6 +98,7 @@ class GameController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$game->getId(), $request->request->get('_token'))) {
             $entityManager->remove($game);
             $entityManager->flush();
+            $this->addFlash('error','Game successfully deleted!');
         }
 
         return $this->redirectToRoute('app_game_index', [], Response::HTTP_SEE_OTHER);
