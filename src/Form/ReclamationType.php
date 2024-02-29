@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Form;
+use App\Entity\Reponse;
 
 use App\Entity\Reclamation;
 use Symfony\Component\Form\AbstractType;
@@ -11,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType as TypeDateType;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 
 class ReclamationType extends AbstractType
@@ -42,7 +44,11 @@ class ReclamationType extends AbstractType
                 'mapped' => false, // Supprime la liaison automatique avec l'entité
             ])
 
-            ->add('reponse')
+            ->add('reponses', CollectionType::class, [
+                'entry_type' => ReponseType::class,
+                'allow_add' => true,
+                'by_reference' => false,
+            ])
             
             ->add('save', SubmitType::class)
         ;

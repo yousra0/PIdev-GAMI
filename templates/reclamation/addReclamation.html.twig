@@ -152,7 +152,7 @@
                             {# Affiche les erreurs de validation du champ "titre" #}
                             {% if form_errors(form.TitreRec) %}
                                 <div class="error-message">
-                                    {{ form_errors(form.TitreRec) }}
+                                    {{ form_errors(form.titreRec) }}
                                 </div>
                             {% endif %}
                         </td>
@@ -170,8 +170,6 @@
                             {% endif %}
                         </td>
                     </tr>
-
-                    <tr>
                         <td>{{ form_widget(form.DateRec, {'attr': {'type': 'date'}}) }}</td>
                     </tr>
 

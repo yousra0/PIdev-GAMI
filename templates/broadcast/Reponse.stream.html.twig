@@ -1,8 +1,8 @@
 {# Learn how to use Turbo Streams: https://github.com/symfony/ux-turbo#broadcast-doctrine-entities-update #}
 {% block create %}
-<turbo-stream action="append" target="comments">
+<turbo-stream action="append" target="reponses">
     <template>
-        <div id="{{ 'comment_' ~ id }}">
+        <div id="{{ 'reponse_' ~ id }}">
             #{{ id }} created
         </div>
     </template>
@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block update %}
-<turbo-stream action="update" target="comment_{{ id }}">
+<turbo-stream action="update" target="reponse_{{ id }}">
     <template>
         #{{ id }} updated
     </template>
@@ -18,5 +18,5 @@
 {% endblock %}
 
 {% block remove %}
-<turbo-stream action="remove" target="comment_{{ id }}"></turbo-stream>
+<turbo-stream action="remove" target="reponse_{{ id }}"></turbo-stream>
 {% endblock %}

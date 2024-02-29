@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>List post</title>
+    <title>List des réclamations</title>
         <a href="{{ path('addreclamation') }}" class="button button5">Add</a>
 
     {% block stylesheets %}
@@ -39,22 +39,22 @@
                 padding: 20px 0;
             }
 
-            /* Post styles */
-            .post {
+            /* reclamation styles */
+            .reclamation {
                 background-color: #333;
                 border-radius: 5px;
                 margin-bottom: 10px;
                 padding: 10px;
             }
 
-            .post img {
+            .reclamation img {
                 max-width: 100%;
                 height: auto;
                 border-radius: 5px;
                 margin-bottom: 10px;
             }
 
-            .post-actions {
+            .reclamation-actions {
                 margin-top: 10px;
             }
 
@@ -122,21 +122,74 @@
     <h1>Liste des réclamations</h1>
 
     {% for reclamation in reclamations %}
-        <div class="reclamation">
-            <h3>{{ reclamation.TitreRec }}</h3>
-            <p>{{ reclamation.ContenuRec }}</p>
-            <p>Date: {{ reclamation.DateRec ? reclamation.DateRec.format('Y-m-d H:i:s') : '' }}</p>
-            
+    <div class="reclamation">
+        <h3>{{ reclamation.TitreRec }}</h3>
+        <p>{{ reclamation.ContenuRec }}</p>
+        <p>Date: {{ reclamation.DateRec ? reclamation.DateRec|date('Y-m-d H:i:s') : '' }}</p>
+        
+            <h3>Reponses:</h3>
+            <ul class="reponses-list">
+                <div id="reponses-container-{{ reclamation.id }}"></div>
+                
+                {% for reponse in reclamation.reponses %}
+                    <li>{{ reponse.contenuRep }}</li>
+                    <div class="reponse-actions">
+                        
+                    </div>
+                {% endfor %}
+            </ul>
 
-            <div class="reclamation-actions">
-                <a href="{{ path('deleteReclamation', {'id': reclamation.id}) }}" class="button button5">Delete</a>
-                <a href="{{ path('editReclamation', {'id': reclamation.id}) }}" class="button button5">Edit</a>
-            </div>
+       <div class="reclamation-actions">
+            <a href="{{ path('deleteReclamation', {'id': reclamation.id}) }}" class="button button5" data-confirm="Are you sure you want to delete this item?">Delete</a>
+            <a href="{{ path('editReclamation', {'id': reclamation.id}) }}" class="button button5">Edit</a>
         </div>
-    {% endfor %}
-</div>
+    </div>
+{% endfor %}
+{% block javascripts %}
+    <script>
+        //reponses
+        document.getElementById('load-reponses-btn').addEventListener('click', function() {
+        const reclamationId = this.getAttribute('data-reclamation-id');
+        fetch(`/reclamation/${reclamationId}/reponses`)
+            .then(response => response.json())
+            .then(data => {
+                const reponsesContainer = document.getElementById('reponses-container');
+                reponsesContainer.innerHTML = '';
+                data.forEach(reponse => {
+                    const reponseElement = document.createElement('div');
+                    reponseElement.textContent = reponse.content;
+                    reponsesContainer.appendChild(reponseElement);
+                });
+            });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const loadButtons = document.querySelectorAll('[id^="load-reponses-btn-"]');
+
+    loadButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const reclamationId = button.getAttribute('data-reclamation-id');
+            fetch(`/reclamation/${reclamationId}/reponses`)
+                .then(response => response.json())
+                .then(data => {
+                    const reponsesContainer = document.getElementById(`reponses-container-${reclamationId}`);
+                    reponsesContainer.innerHTML = '';
+                    data.forEach(reponse => {
+                        const reponseElement = document.createElement('div');
+                        reponseElement.textContent = reponse.content;
+                        reponsesContainer.appendChild(reponseElement);
+                    });
+                });
+        });
+    });
+});
+
+
+
+    </script>
 {% endblock %}
 
+{% endblock %}
 
 
 

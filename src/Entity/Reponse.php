@@ -1,19 +1,24 @@
 <?php
 
 namespace App\Entity;
-
 use App\Repository\ReponseRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\UX\Turbo\Attribute\Broadcast;
+use ApiPlatform\Metadata\ApiResource;
+use phpDocumentor\Reflection\Types\Integer;
 
 #[ORM\Entity(repositoryClass: ReponseRepository::class)]
+//#[ApiResource]
+#[Broadcast]
+
 class Reponse
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\GeneratedValue(strategy: "AUTO")]
+    #[ORM\Column(type: "integer")]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
@@ -22,14 +27,9 @@ class Reponse
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $DateRep = null;
 
-    #[ORM\OneToMany(targetEntity: Reclamation::class, mappedBy: 'reclamation')]
-    private Collection $reclamations;
-
+    #[ORM\ManyToOne(inversedBy: 'reponses')]
+    private ?Reclamation $reclamation = null;
    
-    public function __construct()
-    {
-        $this->reclamations = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -60,32 +60,14 @@ class Reponse
         return $this;
     }
 
-    /**
-     * @return Collection<int, Reclamation>
-     */
-    public function getReclamations(): Collection
+    public function getReclamation(): ?Reclamation
     {
-        return $this->reclamations;
+        return $this->reclamation;
     }
 
-    public function addReclamation(Reclamation $reclamation): static
+    public function setReclamation(?Reclamation $reclamation): static
     {
-        if (!$this->reclamations->contains($reclamation)) {
-            $this->reclamations->add($reclamation);
-            $reclamation->setReponse($this);
-        }
-
-        return $this;
-    }
-
-    public function removeReclamation(Reclamation $reclamation): static
-    {
-        if ($this->reclamations->removeElement($reclamation)) {
-            // set the owning side to null (unless already changed)
-            if ($reclamation->getReponse() === $this) {
-                $reclamation->setReponse(null);
-            }
-        }
+        $this->reclamation = $reclamation;
 
         return $this;
     }

@@ -1,22 +1,26 @@
 <?php
 
 namespace App\Entity;
-
 use App\Repository\ReclamationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use phpDocumentor\Reflection\Types\Integer;
 
 
 #[ORM\Entity(repositoryClass: ReclamationRepository::class)]
+//#[ApiResource]
+
 class Reclamation
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\GeneratedValue(strategy: "AUTO")]
+    #[ORM\Column(type: "integer")]
     private ?int $id = null;
+
+
 
     #[ORM\Column(length: 255)]
     private ?string $TitreRec = null;
@@ -27,10 +31,14 @@ class Reclamation
     #[ORM\Column(type: 'datetime')]
     private ?\DateTimeInterface $DateRec = null;
 
-    
 
-    #[ORM\ManyToOne(inversedBy: 'reclamations')]
-    private ?Reponse $reponse = null;
+    #[ORM\OneToMany(targetEntity: Reponse::class, mappedBy: 'reclamation')]
+    private Collection $reponses;
+
+    public function __construct()
+    {
+        $this->reponses = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -75,15 +83,35 @@ class Reclamation
 
     
 
-    public function getReponse(): ?Reponse
+
+    /**
+     * @return Collection<int, Reponse>
+     */
+    public function getReponses(): Collection
     {
-        return $this->reponse;
+        return $this->reponses;
     }
 
-    public function setReponse(?Reponse $reponse): static
+    public function addReponse(Reponse $reponse): static
     {
-        $this->reponse = $reponse;
+        if (!$this->reponses->contains($reponse)) {
+            $this->reponses->add($reponse);
+            $reponse->setReclamation($this);
+        }
 
         return $this;
     }
+
+    public function removeReponse(Reponse $reponse): static
+    {
+        if ($this->reponses->removeElement($reponse)) {
+            // set the owning side to null (unless already changed)
+            if ($reponse->getReclamation() === $this) {
+                $reponse->setReclamation(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
