@@ -1,11 +1,13 @@
 {% extends 'base2.html.twig' %}
 
-
+{% block title %} Liste des Categories {% endblock %}
 
 {% block body %}
+<div class="container">
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3">
+        <h2>Liste des Categories</h2>
             <!-- Barre latérale gauche -->
             <!-- Ajoutez ici votre contenu de la barre latérale -->
         </div>
@@ -27,8 +29,8 @@
                         <td style="color: black;">{{ categorie.name }}</td>
                         <td style="color: black;">{{ categorie.description }}</td>
                         <td>
-                            <a href="{{ path('app_categorie_show', {'id': categorie.id}) }}">Show</a>
-                            <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}">Edit</a>
+                            <a href="{{ path('app_categorie_show', {'id': categorie.id})}}" class="btn btn-primary">Show</a>
+                            <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}" class="btn btn-primary">Edit</a>
                         </td>
                     </tr>
                 {% else %}
@@ -42,6 +44,7 @@
             <a href="{{ path('app_categorie_new') }}">Create new</a>
         </div>
     </div>
+</div>
 </div>
 {% endblock %}
 
