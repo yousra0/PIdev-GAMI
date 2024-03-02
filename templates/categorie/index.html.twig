@@ -40,6 +40,10 @@
                 {% endfor %}
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center">
+                        {% do categories.setPageRange(2) %}
+                        {{ knp_pagination_render(categories, 'pagination/pagination.html.twig')}}
+                    </div>
 
             <a href="{{ path('app_categorie_new') }}">Create new</a>
         </div>

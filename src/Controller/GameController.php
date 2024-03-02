@@ -6,6 +6,7 @@ use App\Entity\Game;
 use App\Form\GameType;
 use App\Repository\GameRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,10 +17,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class GameController extends AbstractController
 {
     #[Route('/', name: 'app_game_index', methods: ['GET'])]
-    public function index(GameRepository $gameRepository): Response
+    public function index(
+        GameRepository $gameRepository,
+        PaginatorInterface $paginator,
+        Request $request
+        ): Response
     {
+        $data = $gameRepository->findAll();
+
+        $games = $paginator->paginate(
+            $data,
+            $request->query->getInt('page', 1),
+            6
+        );
         return $this->render('game/index.html.twig', [
-            'games' => $gameRepository->findAll(),
+            'games' => $games,
         ]);
     }
 
@@ -125,5 +137,6 @@ class GameController extends AbstractController
     // If $games is an array, return a JSON response with the games data
     return new JsonResponse($games, 200);
     }
+    
 
 }

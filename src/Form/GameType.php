@@ -29,7 +29,7 @@ class GameType extends AbstractType
             ->add('description', TextType::class,[
                 'constraints' => [
                     new Assert\NotBlank(),
-                    new Assert\Length(['max' => 50]),
+                    new Assert\Length(['max' => 500]),
                 ],
             ])
             ->add('date')
