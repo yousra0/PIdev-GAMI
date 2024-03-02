@@ -1,0 +1,26 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Edit Post{% endblock %}
+
+{% block body %}
+    <h1>Edit Post</h1>
+
+    {{ form_start(form) }}
+    <div class="form-group">
+        {{ form_label(form.titre) }}
+        {{ form_widget(form.titre, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.contenuPub) }}
+        {{ form_widget(form.contenuPub, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.file) }}
+        {{ form_widget(form.file, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a href="{{ path('listPostBack') }}" class="btn btn-secondary">Cancel</a>
+
+    {{ form_end(form) }}
+{% endblock %}

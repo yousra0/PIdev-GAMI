@@ -1,6 +1,10 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> defc2e6f5f9af504af9fa2d2a885bb437b185de0
 when@test:
     twig:
         strict_variables: true

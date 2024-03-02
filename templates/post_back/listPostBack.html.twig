@@ -1,0 +1,123 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}GAMI{% endblock %}
+
+
+    {% block stylesheets %}
+
+        <style>
+.pagination {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            justify-content: center;
+        }
+
+        .pagination li {
+            margin: 0 5px;
+        }
+
+        .pagination a {
+            color: black;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+
+        .pagination a:hover {
+            background-color: #f2f2f2;
+        }
+        </style>
+    {% endblock %}
+
+
+{% block body %}
+<script src="{{ asset( 'js/jquery.js') }}"></script>
+    <div class="container">
+        <h1>List post</h1>
+        <div id="result"></div>
+        <input type="search" class="form-control" placeholder="Chercher" id="search" aria-label="Search Dashboard">
+        <table class="table table-bordered" id="tableac">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Contenu</th>
+                    <th>Date</th>
+                    <th>Image</th>
+                    <th>Likes</th>
+                    <th>Dislikes</th>
+                    <th>Commentaires</th>
+                    <th>Actions des posts</th>
+                    <th>Actions des commentaires</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in pagination %}
+                    <tr>
+                        <td>{{ post.titre }}</td>
+                        <td>{{ post.contenuPub }}</td>
+                        <td>{{ post.datePub ? post.datePub.format('Y-m-d H:i:s') : '' }}</td>
+                        <td><img src="{{ asset('uploads/' ~ post.file) }}" alt="Image" style="max-width: 100px;"></td>
+                        <td>{{ post.likes }}</td>
+                        <td>{{ post.dislikes }}</td>
+                        <td>
+                            <ul class="comments-list">
+                                <div id="comments-container-{{ post.id }}"></div>
+                                
+                                {% for comment in post.comments %}
+                                    <li>{{ comment.contenuComment }}</li>
+                                    
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td>
+                            <div class="post-actions">
+                                <a href="{{ path('deletePostBack', {'id': post.id}) }}" class="btn btn-danger">Delete</a>
+                                <a href="{{ path('editPostBack', {'id': post.id}) }}" class="btn btn-primary">Edit</a>
+                            </div>
+                        </td>
+                        <td>
+                            {% for comment in post.comments %}
+                                <div class="comment-actions">
+                                    <a href="{{ path('deleteComment', {'id': comment.id}) }}" class="btn btn-danger">Delete</a>
+                                    <a href="{{ path('editComment', {'id': comment.id}) }}" class="btn btn-primary">Edit</a>
+                                </div>
+                            {% endfor %}
+                        </td> 
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ path('addpostback') }}" class="btn btn-success">Add</a>
+        {# Afficher les liens de pagination #}
+    {{ knp_pagination_render(pagination) }}
+    </div>
+
+<script>
+        $(document).ready(function(){
+            $('#search').keyup(function(){
+                search_table($(this).val());
+            });
+            function search_table(value){
+                $('#tableac tbody tr').each(function(){
+                    var found = false;
+                    $(this).find('td:nth-child(1),td:nth-child(2), td:nth-child(3), td:nth-child(5), td:nth-child(6)').each(function(){ 
+                        if($(this).text().toLowerCase().includes(value.toLowerCase())){
+                            found = true;
+                            return false; 
+                        }
+                    });
+                    if(found){
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+        });
+    </script>
+
+{% endblock %}
