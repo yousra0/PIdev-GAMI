@@ -7,6 +7,7 @@ use App\Form\GameType;
 use App\Repository\GameRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -109,4 +110,20 @@ class GameController extends AbstractController
     {
         return $this->render('base.html.twig');
     }
+
+    #[Route('/search', name: 'search', methods: ['GET'])]
+    public function search(GameRepository $gameRepository, Request $request): Response
+    {
+        $query = $request->query->get('query');
+        $games = $gameRepository->search($query);
+        // Check if $games is an array
+    if (!is_array($games)) {
+        // If $games is not an array, return a JSON response with an error message
+        return new JsonResponse(['error' => 'Games data is not in the expected format'], 500);
+    }
+
+    // If $games is an array, return a JSON response with the games data
+    return new JsonResponse($games, 200);
+    }
+
 }

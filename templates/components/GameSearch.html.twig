@@ -1,0 +1,42 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.5.4/rxjs.umd.min.js"></script>
+
+<input type="text" id="searchInput" placeholder="Search for games..." class="form-control">
+<div id="searchResults"></div>
+
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    const inputObservable = rxjs.fromEvent(searchInput, 'input');
+
+    const debouncedInputObservable = inputObservable.pipe(
+        rxjs.operators.debounceTime(500),
+        rxjs.operators.map(event => event.target.value),
+        rxjs.operators.distinctUntilChanged()
+    );
+
+    const subscription = debouncedInputObservable.subscribe(searchQuery => {
+       fetch('/game/search?query=' + searchQuery, {
+           method: 'GET',
+           headers: {
+               'Accept': 'application/json',
+               'Content-Type': 'application/json'
+           }
+       })
+         .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                searchResults.innerHTML = data.map(game => {
+                        return `<div href='/${game.name}'>
+                            <h2>${game.name}</h2>
+                            <p>${game.description}</p>
+                        </div>`;
+                    }
+                ).join('');
+            });
+
+
+
+    });
+
+</script>

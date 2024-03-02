@@ -34,7 +34,7 @@ class GameType extends AbstractType
             ])
             ->add('date')
             ->add('image', FileType::class, [
-                'label' => 'Fichier',
+                'label' => 'Image(JPG,PNG or GIF file)',
                 'data_class' => null,
                 'required' => false,
                 'mapped' => true,

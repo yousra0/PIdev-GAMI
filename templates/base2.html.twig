@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}Gami{% endblock %}</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
     
     {# Stylesheets #}
@@ -16,26 +16,10 @@
         <link rel="stylesheet" href="{{ asset('./plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css') }}">
         <!-- Custom Stylesheet -->
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <!-- kh_css -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     
-    <style> .alert{
-                pandding: 10px;
-                color: white;
-                text-align:center;
-                margin: 0;
-                border: none;
-                border-radius: 0;
-                }
-                .alert-success {
-                    background-color: green ;
-                }
-                .alert-error {
-                    background-color: red ;
-                }
-                .alert-info {
-                    background-color: blue ;
-                }
-
-    </style>
+   
     {% endblock %}
 
     
