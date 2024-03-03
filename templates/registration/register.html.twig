@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-content">
+    <div style="margin-top: 50px;"> {# Add margin-top to move the form downwards #}
+    <center><h1>Register</h1></center>
+        {% block form %}
+            {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+
+                {{ form_row(form.email, {'attr': {'class': 'form-control mb-3','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: white'}}) }}
+                <b><span style="color: red;">{{ form_errors(form.email) }}</span></b>
+                {{ form_row(form.plainPassword, {'attr': {'class': 'form-control mb-3','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: white'}}) }}
+                <b><span style="color: red;">{{ form_errors(form.plainPassword) }}</span></b>
+                {{ form_row(form.nom, {'attr': {'class': 'form-control mb-3','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: white'}}) }}
+                <b><span style="color: red;">{{ form_errors(form.nom) }}</span></b>
+                {{ form_row(form.prenom, {'attr': {'class': 'form-control mb-3','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: white'}}) }}
+                <b><span style="color: red;">{{ form_errors(form.prenom) }}</span></b>
+                {{ form_row(form.pays, {'attr': {'class': 'form-control mb-3','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: white'}}) }}
+                {{ form_row(form.datenai, {'attr': {'class': 'form-control mb-3','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: white'}}) }}
+                <b><span style="color: red;">{{ form_errors(form.datenai) }}</span></b>
+            {{ form_widget(form.pprofile) }} <br>
+                {{ form_widget(form.agreeTerms) }}
+                
+               <center> <button type="submit" class="btn btn-success">Register</button></center>
+            {{ form_end(form) }}
+        {% endblock %}
+    </div>
+        </div>
+            </div>
+                </div>
+                    </div>
+{% endblock %}

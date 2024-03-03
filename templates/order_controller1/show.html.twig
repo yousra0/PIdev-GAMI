@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Order{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="content" style="margin-bottom: 20px; margin-top: 100px;">
+        <h1 class="display-4 text-white">Order Details</h1>
+
+        <table class="table table-bordered table-striped">
+            <tbody>
+                <tr>
+                    <th scope="row" class="font-weight-bold text-white">Order ID</th>
+                    <td class="text-white">{{ order.id }}</td>
+                </tr>
+                {# Add other necessary fields here, excluding the ones you want to remove #}
+                <tr>
+                    <th scope="row" class="font-weight-bold text-white">User</th>
+                    <td class="text-white">{{ order.user.name }}</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="font-weight-bold text-white">Products</th>
+                    <td>
+                        <table class="table text-white">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Description</th>
+                                    <th>Reference</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for product in order.products %}
+                                    <tr>
+                                        <td>{{ product.name }}</td>
+                                        <td>{{ product.price }}</td>
+                                        <td>{{ product.description }}</td>
+                                        <td>{{ product.reference }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a href="{{ path('app_order_controller1_index') }}" class="btn btn-secondary">Back to List</a>
+        <a href="{{ path('app_order_controller1_edit', {'id': order.id}) }}" class="btn btn-warning">Edit</a>
+
+        {{ include('order_controller1/_delete_form.html.twig') }}
+    </div>
+
+    <style>
+        /* Add your existing CSS styles here */
+
+        .container {
+            margin-top: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        th.text-white,
+        td.text-white,
+        .table th.text-white,
+        .table td.text-white {
+            color: white !important;
+        }
+    </style>
+{% endblock %}

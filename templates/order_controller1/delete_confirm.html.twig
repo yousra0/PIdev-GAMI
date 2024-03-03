@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirm Deletion{% endblock %}
+
+{% block body %}
+    <h1>Confirm Deletion</h1>
+    
+    <p>Are you sure you want to delete the product "{{ product.name }}"?</p>
+    
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+    {{ form_end(form) }}
+    
+    <a href="{{ path('app_product_controller1_index') }}">Cancel</a>
+{% endblock %}

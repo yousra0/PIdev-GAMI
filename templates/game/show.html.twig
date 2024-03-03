@@ -1,0 +1,32 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Jeux{% endblock %} {# Set the title of the page #}
+
+{% block body %}
+<div class="content-body">
+    <div class="container-fluid">
+
+        <div class="card">
+            <div class="card-body">
+                <div class="media align-items-center mb-4">
+                    <img class="mr-3" src="{{ asset('uploads/' ~ game.image) }}" alt="Image" width="150" height="100" alt="">
+                    <div class="media-body">
+                        <h3 class="mb-0">{{ game.name }}</h3>
+                    </div>
+                </div>
+                
+                <h4>Description :</h4>
+                <p class="text-muted">{{ game.description }}</p>
+                <ul class="card-profile__info">
+                    <li class="mb-1"><strong class="text-dark mr-4">Date</strong> <span>{{ game.date|date('Y-m-d H:i:s') }}</span></li>
+                    <li><strong class="text-dark mr-4">Lien</strong> <span>{{ game.lien }}</span></li>
+                </ul>
+
+                {{ include('game/_delete_form.html.twig') }} {# Include the delete form template #}
+                
+                 
+            </div>
+        </div>  
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div style="margin-top: 50px;"> {# Add margin-top to move the form downwards #}
+    
+        {% block form %}
+ 
+            {{ form_start(form, {'attr': {'enctype': 'multipart/form-data', 'id': 'votre-formulaire-id'}}) }}
+
+                {{ form_row(form.date, {'attr': {'class': 'form-control mb-3','data-error-class': 'error-message white-text'}, 'label_attr': {'style': 'color: white'}}) }}
+                {{ form_row(form.jeu, {'attr': {'class': 'form-control mb-3','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: white'}}) }}
+                {{ form_row(form.logo, {'label': 'Fichier', 'attr': {'class': 'form-control mb-3', 'data-error-class': 'error-message'}, 'label_attr': {'style': 'color: white'}}) }}
+                {{ form_row(form.recomponse, {'attr': {'class': 'form-control mb-3','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: white'}}) }}
+                {{ form_row(form.lieu, {'attr': {'class': 'form-control mb-3','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: white'}}) }}
+                {{ form_row(form.regle, {'attr': {'class': 'form-control mb-3','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: white'}}) }}
+                {{ form_row(form.nb_equipe, {'attr': {'class': 'form-control mb-3','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: white'}}) }}
+                 {{ form_row(form.save,{'attr': {'class': 'main-button'}})}}
+                 
+            {{ form_end(form) }}
+        {% endblock %}
+    </div>
+    
+{% endblock %}

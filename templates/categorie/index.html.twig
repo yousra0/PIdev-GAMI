@@ -1,0 +1,91 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %} Liste des Categories {% endblock %}
+
+{% block body %}
+<script src="{{ asset( 'js/jquery.js') }}"></script>
+<div class="container">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+        <h2>Liste des Categories</h2>
+            <!-- Barre latérale gauche -->
+            <!-- Ajoutez ici votre contenu de la barre latérale -->
+        </div>
+        <div class="col-md-9">
+            <!-- Contenu principal -->
+            <input type="search" class="form-control" placeholder="Chercher" id="search" aria-label="Search Dashboard">
+            <table class="table" id="tableac">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for categorie in categories %}
+                    <tr>
+                        <td style="color: black;">{{ categorie.id }}</td>
+                        <td style="color: black;">{{ categorie.name }}</td>
+                        <td style="color: black;">{{ categorie.description }}</td>
+                        <td>
+                            <a href="{{ path('app_categorie_show', {'id': categorie.id})}}" class="btn btn-primary">Show</a>
+                            <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}" class="btn btn-primary">Edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">No records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-center">
+                        {% do categories.setPageRange(2) %}
+                        {{ knp_pagination_render(categories, 'pagination/pagination.html.twig')}}
+                    </div>
+
+            <a href="{{ path('app_categorie_new') }}">Create new</a>
+        </div>
+    </div>
+</div>
+</div>
+  <script>
+        $(document).ready(function(){
+            $('#search').keyup(function(){
+                search_table($(this).val());
+            });
+            function search_table(value){
+                $('#tableac tbody tr').each(function(){
+                    var found = false;
+                    $(this).find('td:nth-child(2), td:nth-child(3)').each(function(){ 
+                        if($(this).text().toLowerCase().includes(value.toLowerCase())){
+                            found = true;
+                            return false; 
+                        }
+                    });
+                    if(found){
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+        });
+    </script>  
+{#     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            });
+        });
+    });
+</script> #}
+
+{% endblock %}
+

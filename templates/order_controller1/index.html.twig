@@ -1,0 +1,125 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Order Index{% endblock %}
+
+{% block body %}
+    <div class="content">
+        <div class="content" style="margin-bottom: 20px; margin-top: 100px;">
+            <h1 class="text-white">Orders</h1>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="text-white">Id</th>
+                        <th class="text-white">Product Name</th>
+                        <th class="text-white">Product Price</th>
+                        <th class="text-white">Product Description</th>
+                        <th class="text-white">Product Reference</th>
+                        <th class="text-white">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        {% for product in order.products %}
+                            <tr>
+                                <td class="text-white">{{ order.id }}</td>
+                                <td class="text-white">{{ product.name }}</td>
+                                <td class="text-white">{{ product.price }}</td>
+                                <td class="text-white">{{ product.description }}</td>
+                                <td class="text-white">{{ product.reference }}</td>
+                                <td class="text-white">
+                                    <a href="{{ path('app_order_controller1_show', {'id': order.id}) }}" class="btn btn-info">Show</a>
+                                    <form method="post" action="{{ path('app_order_controller1_delete', {'id': order.id}) }}" style="display: inline;">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ order.id) }}">
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this order?')">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td class="text-white" colspan="6">No records found</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <!-- Back button -->
+                <a href="#" onclick="goBack()" class="btn btn-secondary">Back</a>
+
+                <!-- Create New button -->
+                <a href="{{ path('app_order_controller1_new') }}" class="btn btn-success">Create New</a>
+            </div>
+        </div>
+
+        <style>
+            /* Add your existing CSS styles here */
+
+            .content {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            table {
+                width: 90%;
+                font-size: 16px;
+                border-collapse: collapse;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                background-color: #333333;
+                margin-top: 20px;
+                color: white;
+            }
+
+            th, td {
+                padding: 15px;
+                text-align: left;
+                border-bottom: 1px solid #555555;
+            }
+
+            th.text-white {
+                background-color: #444444;
+                color: white;
+            }
+
+            .btn {
+                display: inline-block;
+                padding: 10px 15px;
+                font-size: 14px;
+                cursor: pointer;
+                border: none;
+                border-radius: 3px;
+                transition: background-color 0.3s ease;
+                margin-right: 5px;
+                text-decoration: none;
+                color: white;
+            }
+
+            .btn-success {
+                background-color: #4CAF50;
+            }
+
+            .btn-info {
+                background-color: #2196F3;
+            }
+
+            .btn-warning {
+                background-color: #FF9800;
+            }
+
+            .btn-danger {
+                background-color: #F44336;
+            }
+
+            .btn-secondary {
+                background-color: #6c757d; /* Bootstrap secondary color */
+            }
+        </style>
+
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
+    </div>
+{% endblock %}

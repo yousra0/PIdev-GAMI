@@ -1,0 +1,56 @@
+{% extends 'base4.html.twig' %}
+
+{% block body %}
+    <div class="login-form-bg h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100">
+                <div class="col-xl-6">
+                    <div class="form-input-content">
+                        <div class="card login-form mb-0">
+                            <div class="card-body pt-5">
+                                <a class="text-center" href="index.html"> <h4>Tournois</h4></a>
+                                {{ form_start(form, {'attr': {'enctype': 'multipart/form-data', 'id': 'votre-formulaire-id'}}) }}
+                                <div class="form-group">
+                                    {{ form_row(form.date, {'attr': {'class': 'form-control', 'data-error-class': 'error-message'}, 'label_attr': {'style': 'color: black'}}) }}
+                                    {{ form_row(form.jeu, {'attr': {'class': 'form-control', 'data-error-class': 'error-message'}, 'label_attr': {'style': 'color: black'}}) }}
+                                    {{ form_row(form.logo, {'label': 'Fichier', 'attr': {'class': 'form-control', 'data-error-class': 'error-message'}, 'label_attr': {'style': 'color: black'}}) }}
+                                    {{ form_row(form.recomponse, {'attr': {'class': 'form-control', 'data-error-class': 'error-message'}, 'label_attr': {'style': 'color: black'}}) }}
+                                    
+<label for="search_input">Location:</label>
+    <input type="text" class="form-control" id="search_input" name="search_input" placeholder="Type address..." /> 
+                                       
+                                    {{ form_row(form.regle, {'attr': {'class': 'form-control', 'data-error-class': 'error-message'}, 'label_attr': {'style': 'color: black'}}) }}
+                                    {{ form_row(form.nb_equipe, {'attr': {'class': 'form-control', 'data-error-class': 'error-message'}, 'label_attr': {'style': 'color: black'}}) }}
+                                </div>
+                                {{ form_row(form.save, {'attr': {'class': 'btn login-form__btn submit w-100'}}) }}
+                              
+                                {{ form_end(form) }}
+                                <p class="mt-5 login-form__footer"> <a href="{{ path('app_tournois_back') }}" class="text-primary">Back </a> </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+       
+        var searchInput = 'search_input';
+
+        $(document).ready(function () {
+            var autocomplete;
+            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+                types: ['geocode'],
+                /*componentRestrictions: {
+                    country: "USA"
+                }*/
+            });
+
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                var near_place = autocomplete.getPlace();
+            });
+        });
+    </script>
+  
+{% endblock %}

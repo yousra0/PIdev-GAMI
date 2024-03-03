@@ -1,0 +1,9 @@
+
+{#  {% block title 'Edit Game #' ~ game.id  %}     #}
+{% block body %}
+    
+    {#  <h1> Edit game #{{game.id }}     #}
+    {{ include('game/_form.html.twig', {'button_label': 'Update'}) }}
+    
+       
+{% endblock %}

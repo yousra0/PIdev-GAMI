@@ -1,3 +1,84 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+app_comment:
+    path: '/comment'
+    controller: 'App\Controller\CommentController::index'
+
+add_comment:
+    path: '/comment/add'
+    controller: 'App\Controller\CommentController::addComment'
+
+
+list_comment:
+    path: '/comment/listComment'
+    controller: 'App\Controller\CommentController::listComment'
+
+delete_comment:
+    path: '/comment/deleteComment/{id}'
+    controller: 'App\Controller\CommentController::deleteComment'
+
+edit_comment:
+    path: '/comment/editComment/{id}'
+    controller: 'App\Controller\CommentController::editComment'
+
+get_comments_by_post:
+    path: '/post/{postId}/comments'
+    controller: 'App\Controller\CommentController::getCommentsByPost'
+
+
+
+calendar:
+    path: '/calendar'
+    controller: 'App\Controller\CalendarController::index'
+
+addreclamation:
+    path: /reclamation/add
+    controller: App\Controller\ReclamationController::addReclamation
+
+listReclamation:
+    path: /reclamation/listReclamation
+    controller: App\Controller\ReclamationController::listReclamation
+
+deleteReclamation:
+    path: /reclamation/deleteReclamation/{id}
+    controller: App\Controller\ReclamationController::deleteReclamation
+
+editReclamation:
+    path: /reclamation/editReclamation/{id}
+    controller: App\Controller\ReclamationController::editReclamation
+
+
+
+addreclamationback:
+    path: /reclamation/back/add
+    controller: App\Controller\ReclamationBackController::addReclamationBack
+    
+
+
+listReclamationBack:
+    path: /reclamation/back/list
+    controller: App\Controller\ReclamationBackController::listReclamationBack
+
+
+deleteReclamationBack:
+    path: /reclamation/back/delete/{id}
+    controller: App\Controller\ReclamationBackController::deleteReclamationBack
+
+
+
+addreponse:
+    path: /reponse/add
+    controller: App\Controller\ReponseController::addReponse
+listReponse:
+    path: /reponse/listReponse
+    controller: App\Controller\ReponseController::listReponse
+
+deleteReponse:
+    path: /reponse/deleteReponse/{id}
+    controller: App\Controller\ReponseController::deleteReponse
+
+editReponse:
+    path: /reponse/editReponse/{id}
+    controller: App\Controller\ReponseController::editReponse
+    

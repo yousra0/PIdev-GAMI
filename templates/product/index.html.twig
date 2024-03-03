@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product List{% endblock %}
+
+{% block body %}
+    <div class="content">
+        <div class="other-games">
+            <div class="row">
+                <h2 class="product-list-header">Product List</h2>
+
+                {% if products %}
+                    {# Display sorting links #}
+                    <div class="col-lg-12">
+                        <p>Sort by:
+                            <a href="{{ path('product_index', {'sort_by': 'name', 'sort_order': 'asc'}) }}">Name (A-Z)</a> |
+                            <a href="{{ path('product_index', {'sort_by': 'name', 'sort_order': 'desc'}) }}">Name (Z-A)</a> |
+                            <a href="{{ path('product_index', {'sort_by': 'price', 'sort_order': 'asc'}) }}">Price (Low to High)</a> |
+                            <a href="{{ path('product_index', {'sort_by': 'price', 'sort_order': 'desc'}) }}">Price (High to Low)</a>
+                        </p>
+                    </div>
+                    {% for product in products %}
+                        <div class="col-lg-6">
+                            <div class="item">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <img src="{{ asset('uploads/' ~ product.image) }}" alt="Product Image" class="templatemo-item">
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <h4>{{ product.name }}</h4>
+                                        <p>${{ product.price }}</p>
+                                        <!-- Add the rating -->
+                                        <p>Rating: {{ product.rating }}</p>
+                                        <!-- Remove the "Add to Cart" button and its associated data attributes -->
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p>{{ product.description ?? 'No Description' }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col-lg-12">
+                        No products found
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Center the "New Order" and "Back" buttons -->
+    <div class="content" style="margin-top: 20px; text-align: center;">
+        <a href="{{ path('app_order_controller1_new') }}" class="btn btn-primary">New Order</a>
+        <button class="btn btn-secondary" onclick="goBack()">Back</button>
+    </div>
+
+    <style>
+        /* Add your existing CSS styles here */
+    </style>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,158 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Users{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-content">
+<div style>
+    <h1>Users</h1>
+    <div class="row">
+    <div class="col-xl-3 col-sm-6 grid-margin stretch-card" >
+                <div class="card" >
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                          <h3 class="mb-0 text-danger">{{ percUser }}%</h3>
+                          
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        
+                      </div>
+                    </div>
+                    <h6 class="text-muted font-weight-normal">Pourcentage de joueurs qui sont vérifiés</h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6 grid-margin stretch-card" >
+                <div class="card" >
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                          <h3 class="mb-0 text-danger">{{ users1624 }}</h3>
+                          
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        
+                      </div>
+                    </div>
+                    <h6 class="text-muted font-weight-normal">Nombre de joueur agé de <span class="text-primary">16</span> jusqu'a <span class="text-primary">24</span></h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6 grid-margin stretch-card" >
+                <div class="card" >
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                          <h3 class="mb-0 text-danger">{{ users2534 }}</h3>
+                          
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        
+                      </div>
+                    </div>
+                    <h6 class="text-muted font-weight-normal">Nombre de joueur agé de <span class="text-warning">25</span> jusqu'a <span class="text-warning">34</span></h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6 grid-margin stretch-card" >
+                <div class="card" >
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                          <h3 class="mb-0 text-danger">{{ users3544 }}</h3>
+                          
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        
+                      </div>
+                    </div>
+                    <h6 class="text-muted font-weight-normal">Nombre de joueur agé de <span class="text-success">35</span> jusqu'a <span class="text-success">44</span></h6>
+                  </div>
+                </div>
+              </div>
+              </div>
+    <table class="table">
+        <thead>
+            <tr style="color: white;">
+                <th>Photo de profile</th>
+                <th>Email</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Pays</th>
+                <th>Date naissance</th>
+                <th>Role</th>
+                <th>Verified ?</th>
+                <th>Banned ?</th>
+                <th>Action</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users  %}
+            <tr style="color: white;">
+                <td><img src="{{ asset('userImages/' ~ user.pprofile) }}" alt="" style="border-radius: 23px; width: 100px; height:100px;" ></td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.nom }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.pays }}</td>
+                <td>{{ user.datenai|date('Y-m-d') }}</td> {# Corrected line #}
+                <td>{{ user.roles|join(', ') }}</td>
+                {% if user.isVerified %}
+												<td class="text-center">
+													✔️
+												</td>
+											{% else %}
+												<td class="text-center">
+													❌
+												</td>
+											{% endif %}
+                      {% if user.isIsBanned %}
+												<td class="text-danger">Banni</td>
+											{% else %}
+												<td class="text-success">Actif</td>
+                        
+                      {% endif %}
+												{% if user.isIsBanned %}
+													<td><a class="btn btn-success" href="{{ path('back_user_ban', {'id': user.id}) }}">
+														Débanner</a></td>
+												{% else %}
+													<td><a class="btn btn-danger" href="{{ path('back_user_ban', {'id': user.id}) }}">
+														Banner</a></td>
+													
+												{% endif %}
+
+
+											
+                
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">No records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<a href="{{ path('export_excel') }}" class="btn" style="background-color: #217346; color: white;">Export Users</a>
+
+
+    
+</div>
+    </div>
+        </div>
+            </div>
+                </div>
+
+{% endblock %}
+

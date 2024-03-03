@@ -1,0 +1,66 @@
+{% extends 'base4.html.twig' %}
+
+{% block title %}Tournois{% endblock %}
+
+{% block body %}
+<div class="content-body">
+<div class="container-fluid">
+               
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="media align-items-center mb-4">
+                                
+                                    <img class="mr-3" src="{{ asset('uploads/' ~ tournoi.logo) }}" alt="Image" width="150" height="100" alt="">
+                                    <div class="media-body">
+                                        <h3 class="mb-0">{{tournoi.jeu}}</h3>
+                                        
+                                    </div>
+                                </div>
+                                
+                                
+
+                                <h4>About :</h4>
+                                <p class="text-muted">{{ tournoi.regle }}</p>
+                                <ul class="card-profile__info">
+                                    <li class="mb-1"><strong class="text-dark mr-4">Date</strong> <span>{{ tournoi.date|date('Y-m-d H:i:s') }}</span></li>
+                                    <li><strong class="text-dark mr-4">reconpence</strong> <span>{{tournoi.recomponse}}</span></li>
+                                </ul>
+                                <div class="col-12 text-center">
+                                        <button class="btn btn-danger px-5">Follow Now</button>
+                                    </div>
+
+                                
+
+    {{ include('tournois_back/_delete_form.html.twig') }}
+                                        <p class="mt-5 login-form__footer"> <a href="{{ path('app_tournois_back') }}" class="text-primary">Back </a> </p>
+
+                            </div>
+                        </div>  
+                    </div>
+                    
+                    </div>
+
+
+    
+   
+
+
+
+
+
+
+
+ 
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+<div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-content">
+    
+
+   
+    <div class="game-details">
+            <div class="row">
+              <div class="col-lg-12">
+                <h2>tournoi Details</h2>
+              </div>
+              
+                <div class="content">
+                  <div class="row">
+                    <div class="col-lg-6">
+                     
+                        <div class="left">
+                          <h4>{{ tournoi.jeu }}</h4>
+                          <span style="color: #e83e8c;">{{ tournoi.date|date('Y-m-d H:i:s') }}</span>
+                        
+                    </div>
+                    
+                    
+                    <div class="col-lg-4">
+                           <img src="{{ asset('uploads/' ~ tournoi.logo) }}" alt="Image">
+                    </div>
+                    
+                    <div class="col-lg-12">
+                      <p>{{tournoi.regle}}</p>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="main-border-button">
+                        <a href="{{ path('app_equipes_new', {'tournoi_id': tournoi.id}) }}">sign in Now!</a>
+                      </div>
+                      
+                      <a href="{{ path('app_tournois_index') }}">back to list</a>
+
+    <a href="{{ path('app_tournois_edit', {'id': tournoi.id}) }}">edit</a>
+
+    {{ include('tournois/_delete_form.html.twig') }}
+    
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+                 
+                  
+    </div>
+</div>
+</div> 
+</div>
+
+
+
+
+
+
+
+ 
+{% endblock %}

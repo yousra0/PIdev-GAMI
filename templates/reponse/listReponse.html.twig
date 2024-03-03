@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>List des réclamations</title>
+    <a href="{{ path('addreponse') }}" class="button button5">Add</a>
+
+    {% block stylesheets %}
+        <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/templatemo-cyborg-gaming.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/owl.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
+        <style>
+            /* Votre CSS personnalisé */
+            body, .container, th, td {
+                color: white;
+            }
+        </style>
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+    <div class="container">
+        <h1>Liste de reponse</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Contenu</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Reclamation</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reponse in reponses %}
+                <tr>
+                    <td>{{ reponse.contenuRep }}</td>
+                    <td>{{ reponse.dateRep ? reponse.dateRep.format('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ reponse.reclamation ? reponse.reclamation.contenuRec }}</td>
+                    <td>
+
+                        <a href="{{ path('deleteReponse', {'id': reponse.id}) }}" class="btn btn-danger">Delete</a>
+                        <a href="{{ path('editReponse', {'id': reponse.id}) }}" class="btn btn-primary">Edit</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,19 @@
+
+{% block body %}
+    <div style="margin-top: 50px;"> {# Add margin-top to move the form downwards #}
+        {% block form %}
+            {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+
+                {{ form_row(form.nom, {'attr': {'class': 'form-control mb-3','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: white'}}) }}
+                {{ form_row(form.prenom, {'attr': {'class': 'form-control mb-3','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: white'}}) }}
+                {{ form_row(form.MDP, {'attr': {'class': 'form-control mb-3','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: white'}}) }}
+                {{ form_row(form.email, {'attr': {'class': 'form-control mb-3','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: white'}}) }}
+                {{ form_row(form.pays, {'attr': {'class': 'form-control mb-3','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: white'}}) }}
+                {{ form_row(form.date, {'attr': {'class': 'form-control mb-3','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: white'}}) }}
+                {{ form_row(form.role, {'attr': {'class': 'form-control mb-3','data-error-class': 'error-message'}, 'label_attr': {'style': 'color: white'}}) }}
+ 
+                 {{ form_row(form.save,{'attr': {'class': 'main-button'}})}}
+            {{ form_end(form) }}
+        {% endblock %}
+    </div>
+{% endblock %}

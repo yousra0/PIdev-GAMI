@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product{% endblock %}
+
+{% block body %}
+<div class="content" style="margin-bottom: 20px; margin-top: 100px;">
+    <div class="content">
+        <h1>Product Details</h1>
+
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ product.id }}</td>
+                </tr>
+                <tr>
+                    <th>Reference</th>
+                    <td>{{ product.reference }}</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ product.name }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ product.description }}</td>
+                </tr>
+                <tr>
+                    <th>Price</th>
+                    <td>${{ product.price }}</td>
+                </tr>
+                <tr>
+                    <th>Image</th>
+                    <td>
+                        {% if product.image %}
+                            <td><img src="{{ asset('uploads/' ~ product.image) }}" alt="Image" width="700" height="500"></td>
+                        {% else %}
+                            No Image
+                        {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a href="{{ path('app_product_controller1_index') }}" class="back-btn">Back to List</a>
+
+        <a href="{{ path('app_product_controller1_edit', {'id': product.id}) }}" class="edit-btn">Edit</a>
+
+        {{ include('product_controller1/_delete_form.html.twig') }}
+    </div>
+
+    <style>
+        /* Add your existing CSS styles here */
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #1c1c1c;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: white;
+        }
+
+        .content {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 50%;
+            margin: 0 auto;
+            font-size: 16px;
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #333333; /* Darker shade of black for the table background */
+            margin-top: 20px;
+            color: white; /* White text color inside the table */
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #555555; /* Slightly lighter shade of black for border */
+            color: white; /* White text color */
+        }
+
+        th {
+            background-color: #444444; /* Even darker shade of black for the header background */
+        }
+
+        .back-btn, .edit-btn {
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 3px;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 200px; /* Adjust as needed */
+            border-radius: 5px;
+        }
+    </style>
+{% endblock %}

@@ -1,0 +1,145 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Product Index{% endblock %}
+
+{% block body %}
+    <div class="content" style="margin-bottom: 20px; margin-top: 100px;">
+        <h1 class="product-list-header">Product List</h1>
+
+        <form action="{{ path('app_product_controller1_delete_selected') }}" method="post">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Id</th>
+                        <th>Reference</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Image</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                        <tr>
+                            <td><input type="checkbox" name="selected_products[]" value="{{ product.id }}"></td>
+                            <td>{{ product.id }}</td>
+                            <td>{{ product.reference ?? 'No Reference' }}</td>
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.description }}</td>
+                            <td>${{ product.price }}</td>
+                            <td>
+                                {% if product.image %}
+                                    <img src="{{ asset('uploads/' ~ product.image) }}" alt="Image" width="80" height="80">
+                                {% else %}
+                                    No Image
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{{ path('app_product_controller1_show', {'id': product.id}) }}" class="action-link">Show</a>
+                                <a href="{{ path('app_product_controller1_edit', {'id': product.id}) }}" class="action-link">Edit</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="8">No records found</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <button type="submit" class="delete-btn">Delete Selected</button>
+        </form>
+
+        <a href="{{ path('app_product_controller1_new') }}" class="create-new">Create new</a>
+    </div>
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+           
+            margin: 0;
+            display: center;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: white;
+        }
+
+        .content {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .product-list-header {
+            color: #333333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 90%;
+            font-size: 16px;
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #333333;
+            margin-top: 20px;
+            color: white;
+        }
+
+        th, td {
+            background-color: #1c1c1c;
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #555555;
+            color: white; /* Set text color to white */
+        }
+
+        th {
+            background-color: #444444;
+            color: white;
+        }
+
+        img {
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 5px;
+        }
+
+        input[type="checkbox"] {
+            margin: 0;
+        }
+
+        .delete-btn {
+            background-color: #FF4040;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 3px;
+            margin-top: 10px;
+        }
+
+        .create-new {
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 3px;
+        }
+
+        .action-link {
+            color: #3498db;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+    </style>
+{% endblock %}

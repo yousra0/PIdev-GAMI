@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Equipes index{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-content">
+    <h1>Equipes index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Logo</th>
+                <th>Joueurs</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for equipe in equipes %}
+            <tr>
+                <td style="color: white;">{{ equipe.id }}</td> {# Change la couleur du texte dans les cellules en blanc #}
+                            <td style="color: white;">{{ equipe.nom }}</td>
+                            <td style="color: white;">{{ equipe.logo }}</td>
+                            <td style="color: white;">{{ equipe.joueurs }}</td>
+                <td>
+                    <a href="{{ path('app_equipes_show', {'id': equipe.id}) }}">show</a>
+                    <a href="{{ path('app_equipes_edit', {'id': equipe.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_equipes_new') }}">Create new</a>
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}

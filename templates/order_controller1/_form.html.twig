@@ -1,0 +1,30 @@
+{{ form_start(form) }}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Product</th>
+            <th>Rating</th> {# Add a new column for rating #}
+            <th>Add to Order</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+            <tr>
+                <td><img src="{{ asset('uploads/' ~ product.image) }}" alt="{{ product.name }}" style="max-width: 200px;"></td>
+                <td>{{ product.name }}</td>
+                <td> <!-- Add a new column for the rating input field -->
+                    <input type="number" name="productRatings[{{ product.id }}]" min="1" max="5" > <!-- Rating input field -->
+                </td>
+                <td>{{ form_widget(form.products[product.id]) }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="form-group">
+    {{ form_row(form.save) }}
+</div>
+
+{{ form_end(form) }}
