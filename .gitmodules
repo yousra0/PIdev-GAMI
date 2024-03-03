@@ -1,0 +1,3 @@
+[submodule "vendor/captcha-com/captcha"]
+	path = vendor/captcha-com/captcha
+	url = https://github.com/yousra0/PIdev-GAMI.git

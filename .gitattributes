@@ -1,1 +1,2 @@
 var/log/dev.log filter=lfs diff=lfs merge=lfs -text
+C:/Users/lenovo/Desktop/PIdev-GAMI filter=lfs diff=lfs merge=lfs -text
