@@ -1,0 +1,186 @@
+{% extends 'base3.html.twig' %}
+
+{% block title %}Calendar index{% endblock %}
+
+
+    {% block stylesheets %}
+    <style>
+    /* Table */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+/* Table header */
+.table th {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Table rows */
+.table td {
+    border: 1px solid #dee2e6;
+    padding: 8px;
+}
+
+/* Alternate row colors */
+.table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+/* Actions links */
+.table td a {
+    margin-right: 5px;
+}
+
+body {
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            font-family: "Poppins", serif;
+            background: rgb(238, 174, 202);
+            background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+        }
+
+        h1 {
+            font-weight: 800;
+            margin: 1rem 0 0;
+        }
+
+        ul {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.25rem;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 10rem;
+            height: 10rem;
+            margin: 0.25rem;
+            font-weight: 300;
+            font-size: 0.8rem;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            position: relative;
+            overflow: hidden;
+        }
+
+        time {
+            font-size: 2rem;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .today {
+            background: #ffffff70;
+        }
+
+        button {
+        display: inline-block;
+        background-color: #7b38d8;
+        border-radius: 10px;
+        border: 4px double #cccccc;
+        color: #eeeeee;
+        text-align: center;
+        font-size: 14px;
+        padding: 10px;
+        width: auto;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 2px;
+      }
+      button span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+      }
+      button span:after {
+        content: "\00bb";
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+      }
+      button:hover {
+        background-color: #f7c2f9;
+      }
+      button:hover span {
+        padding-right: 25px;
+      }
+      button:hover span:after {
+        opacity: 1;
+        right: 0;
+      }
+    </style>
+    {% endblock %}
+{% block body %}
+    <h1>Calendar index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Description</th>
+                <th>All_day</th>
+                <th>Background_color</th>
+                <th>Border_color</th>
+                <th>Text_color</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for calendar in calendars %}
+            <tr>
+                <td>{{ calendar.id }}</td>
+                <td>{{ calendar.title }}</td>
+                <td>{{ calendar.start ? calendar.start|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ calendar.end ? calendar.end|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ calendar.description }}</td>
+                <td>{{ calendar.allDay ? 'Yes' : 'No' }}</td>
+                <td>{{ calendar.backgroundColor }}</td>
+                <td>{{ calendar.borderColor }}</td>
+                <td>{{ calendar.textColor }}</td>
+                <td>
+                <button>
+                <span>
+                    <a href="{{ path('calendar_show', {'id': calendar.id}) }}">show</a>
+                </span> 
+                </button>
+                <button>   
+                <span>
+                <a href="{{ path('calendar_edit', {'id': calendar.id}) }}">edit</a>
+                </span>
+                </button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<button>   
+<span>
+    <a href="{{ path('calendar_new') }}">Create new</a>
+    </span>
+</button>
+{% endblock %}

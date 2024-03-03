@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>List post</title>
+    <a href="{{ path('addpost') }}" class="button button5">Add</a>
+
+    {% block stylesheets %}
+        <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/templatemo-cyborg-gaming.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/owl.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
+
+        <style>
+            /* Your custom CSS styles go here */
+            /* Set background to black with 90% opacity */
+            body {
+                color: white; /* Text color */
+                font-family: Arial, sans-serif;
+            }
+
+            /* Main container */
+            .container {
+                max-width: 600px;
+                margin: 50px auto;
+                padding: 10px; /* Reduced padding */
+                border: 2px solid #ccc; /* Grey border */
+                border-radius: 10px;
+            }
+
+            /* Header styles */
+            header {
+                text-align: center;
+                padding: 20px 0;
+            }
+
+            /* Post styles */
+            .post {
+                background-color: #333;
+                border-radius: 5px;
+                margin-bottom: 10px;
+                padding: 10px;
+            }
+
+            .post img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+
+            .post-actions {
+                margin-top: 10px;
+            }
+
+            /* Button styles */
+            .button {
+                background-color: #04AA6D; /* Green */
+                border: none;
+                color: white;
+                padding: 6px 12px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 14px;
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 4px;
+            }
+
+            .button5 {
+                background-color: white;
+                color: black;
+                border: 2px solid #555555;
+                border-radius: 12px;
+            }
+
+            .button5:hover {
+                background-color: #555555;
+                color: white;
+            }
+
+            .error-message {
+                color: red;
+                font-size: 14px;
+            }
+
+            /* Styles for comment edit and delete buttons */
+            .comment-actions a {
+                margin-right: 5px; /* Espacement entre les boutons */
+                padding: 5px 10px; /* Espacement interne */
+                border-radius: 4px; /* Coins arrondis */
+                text-decoration: none; /* Pas de soulignement */
+            }
+
+            .comment-actions a.edit-button {
+                background-color: #007bff; /* Couleur de fond pour le bouton Edit */
+                color: white; /* Couleur du texte */
+            }
+
+            .comment-actions a.delete-button {
+                background-color: #dc3545; /* Couleur de fond pour le bouton Delete */
+                color: white; /* Couleur du texte */
+            }
+
+            .comment-actions a.edit-button:hover,
+            .comment-actions a.delete-button:hover {
+                opacity: 0.8; /* Légère transparence au survol */
+            }
+
+            .pagination {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            justify-content: center;
+        }
+
+        .pagination li {
+            margin: 0 5px;
+        }
+
+        .pagination a {
+            color: black;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+
+        .pagination a:hover {
+            background-color: #f2f2f2;
+        }
+        </style>
+    {% endblock %}
+</head>
+<body>
+<!-- *** Header Area Start *** -->
+  <header class="header-area header-sticky">
+
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- *** Logo Start *** -->
+                    <a href="{{ path('app_index') }}" class="logo">
+                        <img src="assets/images/logo.png" alt="">
+                    </a>
+                    <!-- *** Logo End *** -->
+                    <!-- *** Search End *** -->
+                    <div class="search-input">
+                      <form id="search" action="#">
+                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
+                        <i class="fa fa-search"></i>
+                      </form>
+                    </div>
+                    <!-- *** Search End *** -->
+                    <!-- *** Menu Start *** -->
+                    <ul class="nav"> 
+                        <li><a href="index.html" >Home</a></li>
+                        <li><a href="{{ path('app_browse') }}">Browse</a></li>
+                        <li><a href="{{ path('app_details') }}">Details</a></li>
+                        <li><a href="{{ path('app_streams') }}">Streams</a></li>
+                        <li><a href="{{ path('app_profile') }}" class="active">Profile <img src="assets/images/profile-header.jpg" alt=""></a></li>
+                    </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- *** Menu End *** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- *** Header Area End *** -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-content">
+{% block content %}
+<div class="container">
+    <h1>List post</h1>
+
+    {% for post in pagination %}
+        <div class="post">
+            <h3>{{ post.titre }}</h3>
+            <p>{{ post.contenuPub }}</p>
+            <p>Date: {{ post.datePub ? post.datePub.format('Y-m-d H:i:s') : '' }}</p>
+            <img src="{{ asset('uploads/' ~ post.file) }}" alt="Image">
+
+            <!-- Ajouter un commentaire -->
+            <form method="post" action="{{ path('add_comment') }}" class="comment-form">
+                <label for="contenuComment">Contenu du commentaire</label>
+                <input type="text" name="contenuComment" value="{{ comment.contenuComment|default('') }}">
+                <input type="hidden" name="postId" value="{{ post.id }}">
+                <button type="submit">Ajouter un commentaire</button>
+                {% if app.session.flashBag.has('error') %}
+                    <div class="error-message">{{ app.session.flashBag.get('error')[0] }}</div>
+                {% endif %}
+            </form>
+
+            <h3>Commentaires:</h3>
+            <ul class="comments-list">
+                <div id="comments-container-{{ post.id }}"></div>
+                
+                {% for comment in post.comments %}
+                     <li>{{ comment.contenuComment|default('') }}</li>
+                    <div class="comment-actions">
+                        <a href="{{ path('deleteComment', {'id': comment.id}) }}" class="delete-button">Delete</a>
+                        <a href="{{ path('editComment', {'id': comment.id}) }}" class="edit-button">Edit</a>
+                    </div>
+                {% endfor %}
+            </ul>
+
+            <div class="post-actions">
+                <button class="likeButton" data-post-id="{{ post.id }}">Like</button>
+                <button class="dislikeButton" data-post-id="{{ post.id }}">Dislike</button>
+                <a href="{{ path('deletePost', {'id': post.id}) }}" class="button button5">Delete</a>
+                <a href="{{ path('editPost', {'id': post.id}) }}" class="button button5">Edit</a>
+                <span>Likes: <span class="likesCount">{{ post.likes }}</span></span>
+                <span>Dislikes: <span class="dislikesCount">{{ post.dislikes }}</span></span>
+                <a href="{{ path('app_details_2', {'id': post.id}) }}" class="button button5">Details</a>
+            </div>
+        </div>
+    {% endfor %}
+{# Afficher les liens de pagination #}
+{{ knp_pagination_render(pagination) }}
+
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+            const likeButtons = document.querySelectorAll('.likeButton');
+            const dislikeButtons = document.querySelectorAll('.dislikeButton');
+
+            likeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const postId = button.getAttribute('data-post-id');
+                    fetch(`/post/like/${postId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            // Mettre à jour le nombre de likes sur la page
+                            const likesSpan = button.parentElement.querySelector('.likesCount');
+                            likesSpan.textContent = data.likes;
+                        });
+                });
+            });
+
+            dislikeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const postId = button.getAttribute('data-post-id');
+                    fetch(`/post/dislike/${postId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            // Mettre à jour le nombre de dislikes sur la page
+                            const dislikesSpan = button.parentElement.querySelector('.dislikesCount');
+                            dislikesSpan.textContent = data.dislikes;
+                        });
+                });
+            });
+        });
+
+        //commentaires
+        document.getElementById('load-comments-btn').addEventListener('click', function() {
+        const postId = this.getAttribute('data-post-id');
+        fetch(`/post/${postId}/comments`)
+            .then(response => response.json())
+            .then(data => {
+                const commentsContainer = document.getElementById('comments-container');
+                commentsContainer.innerHTML = '';
+                data.forEach(comment => {
+                    const commentElement = document.createElement('div');
+                    commentElement.textContent = comment.content;
+                    commentsContainer.appendChild(commentElement);
+                });
+            });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const loadButtons = document.querySelectorAll('[id^="load-comments-btn-"]');
+
+    loadButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const postId = button.getAttribute('data-post-id');
+            fetch(`/post/${postId}/comments`)
+                .then(response => response.json())
+                .then(data => {
+                    const commentsContainer = document.getElementById(`comments-container-${postId}`);
+                    commentsContainer.innerHTML = '';
+                    data.forEach(comment => {
+                        const commentElement = document.createElement('div');
+                        commentElement.textContent = comment.content;
+                        commentsContainer.appendChild(commentElement);
+                    });
+                });
+        });
+    });
+});
+
+        function openImageDetails() 
+        {
+            window.open('details.html.twig', '_blank');
+        }
+    </script>
+{% endblock %}
+
+</body>
+</html>

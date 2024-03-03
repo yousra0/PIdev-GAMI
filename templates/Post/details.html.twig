@@ -1,0 +1,220 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Post Details{% endblock %}
+
+{% block body %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Post Details</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+
+    {# Run composer require symfony/webpack-encore-bundle to start using Symfony UX #}
+
+    {% block stylesheets %}
+        <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/templatemo-cyborg-gaming.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/owl.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
+    
+        <style>
+        /* Styles pour le texte en blanc */
+        body, .main-nav a, .search-input input, .search-input i, .nav a,
+        form label, form input[type="text"], form input[type="date"], form button {
+            color: #ffffff; /* Texte en blanc */
+        }
+        /* Styles pour les messages d'erreur en rouge */
+        .error-message {
+            color: #ff0000; /* Rouge */
+            font-size: 14px;
+        }
+        /* Styles pour le formulaire */
+        form {
+            margin-top: 20px;
+        }
+
+        /* Styles pour les étiquettes des champs */
+        form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        /* Styles pour les champs de texte */
+        form input[type="text"], form input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #333333; /* Couleur de fond */
+            color: #ffffff; /* Couleur du texte */
+        }
+
+        /* Styles pour le bouton de soumission */
+        form .button.button5 {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #ff007f; /* Couleur de fond */
+            color: #ffffff; /* Couleur du texte */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Au survol du bouton */
+        form .button.button5:hover {
+            background-color: rgba(255, 0, 127, 0.8); /* Rose avec une opacité de 80% */
+        }
+
+        /* Styles pour le bouton de réinitialisation */
+        form button[type="reset"].button5 {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #ff007f; /* Couleur de fond */
+            color: #ffffff; /* Couleur du texte */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Au survol du bouton de réinitialisation */
+        form button[type="reset"].button5:hover {
+            background-color: rgba(255, 0, 127, 0.8); /* Rose avec une opacité de 80% */
+        }
+
+        /* Style pour la classe post-image */
+        .post-image {
+            width: 50%; /* Définissez la largeur souhaitée */
+            height: auto; /* La hauteur s'ajustera automatiquement pour préserver les proportions */
+        }
+
+        /* Style pour le bouton Delete en rouge */
+        .deleteButton {
+            background-color: #f56464; /* Rouge */
+            color: #ffffff; /* Texte en blanc */
+        }
+
+        /* Style pour le bouton Edit en bleu */
+        .editButton {
+            background-color: #639ff2; /* Bleu */
+            color: #ffffff; /* Texte en blanc */
+        }
+
+        /* Style pour les boutons Like et Dislike en jaune */
+        .likeButton,
+        .dislikeButton {
+            background-color: #edc06d; /* Jaune */
+            color: #000000; /* Texte en noir */
+        }
+    </style>
+
+    {% endblock %}
+
+
+    {% block javascripts %}
+        <script src={{ asset('vendor/jquery/jquery.min.js') }}></script>
+        <script src={{ asset('vendor/bootstrap/js/bootstrap.min.js') }}></script>
+        <script src={{ asset('assets/js/isotope.min.js') }}></script>
+        <script src={{ asset('assets/js/owl-carousel.js') }}></script>
+        <script src={{ asset('assets/js/owl-carousel.js') }}></script>
+        <script src={{ asset('assets/js/popup.js') }}></script>
+        <script src={{ asset('assets/js/custom.js') }}></script>
+
+        <script>
+            // Fonction de réinitialisation
+            function resetForm() {
+                document.getElementById("votre-formulaire-id").reset();
+            }
+        </script>
+    {% endblock %}
+</head>
+<body>
+
+
+<!-- *** Header Area Start *** -->
+  <header class="header-area header-sticky">
+
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- *** Logo Start *** -->
+                    <a href="{{ path('app_index') }}" class="logo">
+                        <img src="assets/images/logo.png" alt="">
+                    </a>
+                    <!-- *** Logo End *** -->
+                    
+                    <!-- *** Search End *** -->
+                    <div class="search-input">
+                      <form id="search" action="#">
+                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
+                        <i class="fa fa-search"></i>
+                      </form>
+                    </div>
+                    <!-- *** Search End *** -->
+                    <!-- *** Menu Start *** -->
+                    <ul class="nav"> 
+                        <li><a href="index.html" >Home</a></li>
+                        <li><a href="{{ path('app_browse') }}">Browse</a></li>
+                        <li><a href="{{ path('app_details') }}">Details</a></li>
+                        <li><a href="{{ path('app_streams') }}">Streams</a></li>
+                        <li><a href="{{ path('app_profile') }}" class="active">Profile <img src="assets/images/profile-header.jpg" alt=""></a></li>
+                    </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- *** Menu End *** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- *** Header Area End *** -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-content">
+            <div class="post">
+
+
+<a href="{{ path('listPost') }}" class="btn btn-secondary">List Posts</a>
+    <h3>{{ post.titre }}</h3>
+    <p>{{ post.contenuPub }}</p>
+    <p>Date: {{ post.datePub ? post.datePub.format('Y-m-d H:i:s') : '' }}</p>
+    <img src="{{ asset('uploads/' ~ post.file) }}" alt="Image" class="post-image">
+
+    <!-- Afficher les commentaires -->
+    <h3>Commentaires:</h3>
+    <ul class="comments-list">
+        {% for comment in post.comments %}
+            <li>{{ comment.contenuComment }}</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Ajouter un commentaire -->
+    <form method="post" action="{{ path('add_comment') }}" class="comment-form">
+        <label for="contenuComment">Contenu du commentaire</label>
+        <input type="text" name="contenuComment">
+        <input type="hidden" name="postId" value="{{ post.id }}">
+        <button type="submit" class="button button5">Ajouter un commentaire</button>
+    </form>
+
+    <!-- Actions sur le post -->
+    <div class="post-actions">
+        <button class="likeButton" data-post-id="{{ post.id }}">Like</button>
+        <button class="dislikeButton" data-post-id="{{ post.id }}">Dislike</button>
+        <a href="{{ path('deletePost', {'id': post.id}) }}" class="button button5 deleteButton">Delete</a>
+        <a href="{{ path('editPost', {'id': post.id}) }}" class="button button5 editButton">Edit</a>
+        <span>Likes: {{ post.likes }}</span>
+        <span>Dislikes: {{ post.dislikes }}</span>
+    </div>
+
+</body>
+</html>
+{% endblock %}
